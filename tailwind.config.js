@@ -14,6 +14,9 @@ module.exports = {
           '100%': { transform: 'translateX(-100%)' },
         },
       },
+      backgroundImage: {
+        'brand-bg': "url('https://images.samsung.com/n_africa/smartphones/galaxy-s24-ultra/images/galaxy-s24-ultra-share-image.jpg')", 
+      },
     },
   },
   plugins: [],
