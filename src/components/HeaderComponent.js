@@ -158,6 +158,13 @@ const HeaderComponent = () => {
                   <li className="text-gray-700 hover:text-blue-500">
                     <a href="/">Contact</a>
                   </li>
+
+                  <select className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm mb-4 text-gray-700">
+                    <option value="All">Categories</option>
+                    <option value="Men">Men</option>
+                    <option value="Women">Women</option>
+                    <option value="Kids">Kids</option>
+                  </select>
                 </ul>
               </div>
             </div>
