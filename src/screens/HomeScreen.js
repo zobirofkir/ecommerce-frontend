@@ -1,22 +1,22 @@
 import React from 'react'
 import SliderComponent from '../components/SliderComponent'
-import LastProduct from '../components/LastProduct'
-import NavCategory from '../components/NavCategory'
+import LastProductComponent from '../components/LastProductComponent'
+import BrandComponent from '../components/BrandComponent'
 import ProductComponent from '../components/ProductComponent'
-import AllProducts from '../components/AllProducts'
+import AllProductComponent from '../components/AllProductComponent'
 
 const HomeScreen = () => {
   return (
     <div>
       <SliderComponent/>
-      
-      <NavCategory/>
 
-      <LastProduct/>
+      <LastProductComponent/>
 
       <ProductComponent/>
 
-      <AllProducts/>
+      <BrandComponent/>
+      
+      <AllProductComponent/>
     </div>
   )
 }

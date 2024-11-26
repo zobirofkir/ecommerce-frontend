@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AllProducts = () => {
+const AllProductComponent = () => {
 const slides = [
     {
         id: 1,
@@ -264,4 +264,4 @@ const slides = [
   )
 }
 
-export default AllProducts
+export default AllProductComponent

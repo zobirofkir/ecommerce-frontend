@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LastProducts = () => {
+const LastProductsComponent = () => {
   // Example array of products
   const products = [
     {
@@ -76,4 +76,4 @@ const LastProducts = () => {
   )
 }
 
-export default LastProducts
+export default LastProductsComponent

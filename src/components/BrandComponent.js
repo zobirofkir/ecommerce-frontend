@@ -1,8 +1,8 @@
 import React from 'react';
 
-const BrandCategories = () => {
+const BrandComponent = () => {
   return (
-    <div className='container mx-auto py-6 bg-brand-bg bg-cover bg-center mt-12'>
+    <div className='container mx-auto py-6 bg-brand-bg bg-cover bg-center mt-12 mb-12'>
       <div className='overflow-hidden'>
         <div className='flex gap-6 animate-marquee'>
           <ul className='flex gap-6 font-semibold text-lg'>
@@ -43,4 +43,4 @@ const BrandCategories = () => {
   );
 }
 
-export default BrandCategories;
+export default BrandComponent;
