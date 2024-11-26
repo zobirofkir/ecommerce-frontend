@@ -5,6 +5,7 @@ import Layout from '../layouts/layout';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
 import CategoryScreen from '../screens/CategoryScreen';
+import CartScreen from '../screens/CartScreen';
 
 
 const AppRoutes = () => {
@@ -14,6 +15,7 @@ const AppRoutes = () => {
             <Route index element={<HomeScreen />} />
             <Route path="/products" element={<ProductScreen />} />
             <Route path="/categories" element={<CategoryScreen />} />
+            <Route path="/carts" element={<CartScreen />} />
         </Route> 
       </Routes>
   )

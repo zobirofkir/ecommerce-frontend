@@ -94,7 +94,9 @@ const HeaderComponent = () => {
             {/* Icons */}
             <div className="flex items-center space-x-4">
               <i className="fa-regular fa-heart text-gray-600 text-xl"></i>
-              <i className="fa-solid fa-cart-shopping text-gray-600 text-xl"></i>
+              <a href="/carts">
+                <i className="fa-solid fa-cart-shopping text-gray-600 text-xl"></i> 
+              </a>
             </div>
           </div>
         </div>
