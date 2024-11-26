@@ -1,8 +1,32 @@
 import React from 'react'
 
 const LastProductsComponent = () => {
-  // Example array of products
+
   const products = [
+    {
+      id: 1,
+      title: 'Product Title 1',
+      description: 'Short description of the product that highlights key features and benefits.',
+      price: 29.99,
+      imageUrl: 'https://images.samsung.com/n_africa/smartphones/galaxy-s24-ultra/images/galaxy-s24-ultra-share-image.jpg',
+      badge: 'New',
+    },
+    {
+      id: 2,
+      title: 'Product Title 2',
+      description: 'Another product description with great features and details.',
+      price: 19.99,
+      imageUrl: 'https://www.cdiscount.com/pdt2/8/8/3/1/1920x800/vib5057551887883/rw/vibox-viii-38-pc-gamer-27-165hz-ecran-pack-in.jpg',
+      badge: 'Sale',
+    },
+    {
+      id: 3,
+      title: 'Product Title 3',
+      description: 'This is another amazing product that you will love.',
+      price: 49.99,
+      imageUrl: 'https://ispot.ru/upload/iblock/bc1/saobzuzubgqblxtx7ycb2hmrjrxhomwh/4_1.jpg',
+      badge: 'New',
+    },
     {
       id: 1,
       title: 'Product Title 1',
