@@ -126,7 +126,7 @@ const HeaderComponent = () => {
               <a href="/categories">Categories</a>
             </li>
             <li className="text-gray-700 hover:text-blue-500">
-              <a href="/">About</a>
+              <a href="/products">Products</a>
             </li>
             <li className="text-gray-700 hover:text-blue-500">
               <a href="/">Contact</a>
@@ -162,7 +162,7 @@ const HeaderComponent = () => {
                 <a href="/categories">Categories</a>
               </li>
               <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
-                <a href="/">About</a>
+                <a href="/products">Products</a>
               </li>
               <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
                 <a href="/">Contact</a>
