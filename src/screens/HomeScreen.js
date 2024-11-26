@@ -4,6 +4,7 @@ import LastProductComponent from '../components/LastProductComponent'
 import BrandComponent from '../components/BrandComponent'
 import ProductComponent from '../components/ProductComponent'
 import AllProductComponent from '../components/AllProductComponent'
+import CategoryComponent from '../components/CategoryComponent'
 
 const HomeScreen = () => {
   return (
@@ -13,6 +14,8 @@ const HomeScreen = () => {
       <LastProductComponent/>
 
       <ProductComponent/>
+
+      <CategoryComponent/>
 
       <BrandComponent/>
       
