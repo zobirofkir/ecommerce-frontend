@@ -82,29 +82,29 @@ const HeaderComponent = () => {
 
               {/* Main Menu */}
               <div className="hidden lg:flex justify-between w-full items-center">
-  {/* Search Bar */}
-  <div className="flex justify-center w-full">
-    <div className="flex items-center bg-gray-100 rounded-full px-3 py-1">
-      <i className="fa-solid fa-magnifying-glass text-gray-500"></i>
-      <input
-        type="text"
-        placeholder="Search ..."
-        className="bg-transparent outline-none pl-2 text-sm"
-      />
-      <select className="bg-transparent outline-none ml-2 text-sm">
-        <option value="All">Categories</option>
-        <option value="Men">Men</option>
-        <option value="Women">Women</option>
-        <option value="Kids">Kids</option>
-      </select>
-    </div>
-  </div>
+                {/* Search Bar */}
+                <div className="flex justify-center w-full">
+                  <div className="flex items-center bg-gray-100 rounded-full px-3 py-1">
+                    <i className="fa-solid fa-magnifying-glass text-gray-500"></i>
+                    <input
+                      type="text"
+                      placeholder="Search ..."
+                      className="bg-transparent outline-none pl-2 text-sm"
+                    />
+                    <select className="bg-transparent outline-none ml-2 text-sm">
+                      <option value="All">Categories</option>
+                      <option value="Men">Men</option>
+                      <option value="Women">Women</option>
+                      <option value="Kids">Kids</option>
+                    </select>
+                  </div>
+                </div>
 
-  {/* Icons */}
-  <div className="flex items-center space-x-4">
-    <i className="fa-regular fa-heart text-gray-600 text-xl"></i>
-    <i className="fa-solid fa-cart-shopping text-gray-600 text-xl"></i>
-  </div>
+                {/* Icons */}
+                <div className="flex items-center space-x-4">
+                  <i className="fa-regular fa-heart text-gray-600 text-xl"></i>
+                  <i className="fa-solid fa-cart-shopping text-gray-600 text-xl"></i>
+                </div>
               </div>
             </div>
 
