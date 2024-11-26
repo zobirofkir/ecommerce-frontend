@@ -143,21 +143,40 @@ const HeaderComponent = () => {
       </div>
 
       <div className="hidden lg:block z-50 relative fixed top-0 left-0 w-full bg-gray-100">
-        <div className="flex items-center w-full justify-center">
-          <ul className="flex gap-8 mt-5 mb-5">
-            <li className="text-gray-900 font-semibold text-md hover:text-gay-950 transition duration-300 ease-out transform hover:scale-105">
-              <a href="/">Home</a>
-            </li>
-            <li className="text-gray-900 font-semibold text-md hover:text-gay-950 transition duration-300 ease-out transform hover:scale-105">
-              <a href="/">Categories</a>
-            </li>
-            <li className="text-gray-900 font-semibold text-md hover:text-gay-950 transition duration-300 ease-out transform hover:scale-105">
-              <a href="/">About</a>
-            </li>
-            <li className="text-gray-900 font-semibold text-md hover:text-gay-950 transition duration-300 ease-out transform hover:scale-105">
-              <a href="/">Contact</a>
-            </li>
-          </ul>
+        <div className="container mx-auto flex justify-between items-center px-4 py-3">
+          <div className="flex items-center">
+            <select className="w-[200px] bg-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700">
+              <option value="All">Last Products</option>
+              <option value="lenovo">Lenovo ThinkBook G2</option>
+              <option value="iphone">Iphone 14</option>
+              <option value="samsung">Samsung S23</option>
+            </select>
+          </div>
+          
+          <div className="flex items-center w-full justify-center">
+            <ul className="flex gap-8 mt-5 mb-5">
+              <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/">Home</a>
+              </li>
+              <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/">Categories</a>
+              </li>
+              <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/">About</a>
+              </li>
+              <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/">Contact</a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="flex items-center">
+            <a href="/">
+              <p className="text-gray-900 font-semibold text-md whitespace-nowrap">
+                Free shipping on orders over $100
+              </p>
+            </a>
+          </div>
         </div>
       </div>
 
