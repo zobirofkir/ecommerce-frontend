@@ -32,11 +32,11 @@ const ProductComponent = () => {
   return (
     <div className="container mx-auto p-6">
 
-      <div className="mb-12">
+      <div className="mb-12 md:block hidden">
         <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center">Shop by Category</h3>
-        <div className="flex space-x-6 justify-center">
+        <div className="flex space-x-6 items-center justify-center overflow-x-auto flex-nowrap">
           <button className="bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition">
-            All Products
+            Fashion
           </button>
           <button className="bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition">
             Electronics
@@ -50,9 +50,18 @@ const ProductComponent = () => {
         </div>
       </div>
 
+      <div className='md:hidden block flex justify-center items-center mb-12'>
+        <select className='bg-gray-300 text-black font-bold py-2 px-6 rounded-full hover:bg-gray-700 transition'>
+          <option value="fashion">Fashion</option>
+          <option value="electronics">Electronics</option>
+          <option value="gadgets">Gadgets</option>
+          <option value="accessories">Accessories</option>
+        </select>
+      </div>
+
       {/* Featured Products Section */}
       <div className="mb-12">
-        <h3 className="text-3xl font-bold text-gray-900 mb-6">Featured Products</h3>
+        <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center">Featured Products</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {products.map(product => (
             <div key={product.id} className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transform hover:scale-105 transition duration-300">

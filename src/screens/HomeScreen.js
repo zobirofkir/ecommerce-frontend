@@ -3,6 +3,7 @@ import SliderComponent from '../components/SliderComponent'
 import LastProduct from '../components/LastProduct'
 import NavCategory from '../components/NavCategory'
 import ProductComponent from '../components/ProductComponent'
+import AllProducts from '../components/AllProducts'
 
 const HomeScreen = () => {
   return (
@@ -14,6 +15,8 @@ const HomeScreen = () => {
       <LastProduct/>
 
       <ProductComponent/>
+
+      <AllProducts/>
     </div>
   )
 }
