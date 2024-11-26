@@ -36,11 +36,11 @@ const HeaderComponent = () => {
             <div className="flex flex-row gap-4">
               <span><i className="fa-regular fa-user"></i></span>
               <p className="flex flex-row gap-2 font-semibold hover:text-yellow-400 transition duration-300 ease-out">
-                <a href="/">Sign In</a>
+                <a href="/login">Sign In</a>
               </p>
               |
               <p className="flex flex-row gap-2 font-semibold hover:text-yellow-400 transition duration-300 ease-out">
-                <a href="/">Sign Up</a>
+                <a href="/register">Sign Up</a>
               </p>
             </div>
           </div>
