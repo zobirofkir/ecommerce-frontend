@@ -12,13 +12,13 @@ const SliderComponent = () => {
       id: 2,
       title: 'Incredible Product 2',
       description: 'Innovation and comfort in one package.',
-      imageUrl: 'https://cf6.certideal.com/35101-thickbox_default/iphone-13-pro-128-go-sans-face-id-couleur-selon-disponibilite.jpg',
+      imageUrl: 'https://ispot.ru/upload/iblock/bc1/saobzuzubgqblxtx7ycb2hmrjrxhomwh/4_1.jpg',
     },
     {
       id: 3,
       title: 'Premium Product 3',
       description: 'Unmatched excellence for your needs.',
-      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHOIdiWodnwVdeGke_nMyg9GezxnGXh2Qhkg&s',
+      imageUrl: 'https://images.samsung.com/n_africa/smartphones/galaxy-s24-ultra/images/galaxy-s24-ultra-share-image.jpg',
     },
   ];
 
