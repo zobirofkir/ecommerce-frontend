@@ -4,13 +4,13 @@ const FooterComponent = () => {
   return (
     <footer className="bg-gray-100 text-gray-700 py-8 mt-12 shadow-md">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
-        {/* Left Section - Logo/Brand */}
+
         <div className="text-center md:text-left">
           <h2 className="text-2xl font-semibold text-gray-800">Your E-Commerce</h2>
           <p className="text-sm text-gray-600 mt-2">Your tagline or slogan here</p>
         </div>
 
-        {/* Middle Section - Links */}
+
         <div className="flex space-x-10">
           <div>
             <h3 className="text-lg font-semibold text-gray-800">Shop</h3>
@@ -30,7 +30,7 @@ const FooterComponent = () => {
           </div>
         </div>
 
-        {/* Right Section - Social Media Links */}
+
         <div className="flex space-x-6 mt-4 md:mt-0">
           <a href="/" className="text-gray-600 hover:text-blue-500">
             <i className="fab fa-facebook-f"></i>
@@ -44,7 +44,7 @@ const FooterComponent = () => {
         </div>
       </div>
 
-      {/* Bottom Section - Copyright */}
+
       <div className="text-center mt-8 text-sm text-gray-500">
         <p>&copy; 2024 Your E-Commerce. All rights reserved.</p>
       </div>

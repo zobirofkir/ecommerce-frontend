@@ -9,6 +9,7 @@ const layout = () => {
       <header>
         <HeaderComponent/>
       </header>
+      
         <Outlet/>
 
       <footer>
