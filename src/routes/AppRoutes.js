@@ -6,7 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import CartScreen from '../screens/CartScreen';
-
+import WishlistScreen from '../screens/LikedProductScreen';
 
 const AppRoutes = () => {
   return (
@@ -16,6 +16,7 @@ const AppRoutes = () => {
             <Route path="/products" element={<ProductScreen />} />
             <Route path="/categories" element={<CategoryScreen />} />
             <Route path="/carts" element={<CartScreen />} />
+            <Route path="/wishlists" element={<WishlistScreen />} />
         </Route> 
       </Routes>
   )
