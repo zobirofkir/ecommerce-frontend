@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerAction } from '../redux/actions/RegisterAction';
 
 const RegisterComponent = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
   });
 
+  const dispatch = useDispatch();
+  const { error } = useSelector((state) => state.register); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -15,7 +18,9 @@ const RegisterComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submited');
+    const { name, email, password } = formData;
+
+    dispatch(registerAction(name, email, password));
   };
 
   return (
@@ -60,24 +65,14 @@ const RegisterComponent = () => {
             />
           </div>
 
-          <div className="mb-6">
-            <label className="block text-gray-700 font-medium mb-2">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:outline-none"
-              placeholder="Confirm your password"
-            />
-          </div>
-
           <button
             type="submit"
             className="w-full bg-gray-600 text-white font-bold py-2 rounded-lg hover:bg-gray-700 transition duration-300"
           >
             Register
           </button>
+
+          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
 
           <div className="mt-4 text-center">
             <p className="text-gray-600">
