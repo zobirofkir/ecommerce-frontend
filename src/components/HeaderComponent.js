@@ -161,7 +161,7 @@ const HeaderComponent = () => {
               </a>
             </li>
             <li>
-              <a href="/contact" className="flex items-center gap-3 hover:text-blue-500 transition">
+              <a href="/contacts" className="flex items-center gap-3 hover:text-blue-500 transition">
                 <i className="fa-solid fa-envelope text-gray-600"></i>
                 Contact
               </a>
@@ -215,7 +215,7 @@ const HeaderComponent = () => {
                 <a href="/products">Products</a>
               </li>
               <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
-                <a href="/">Contact</a>
+                <a href="/contacts">Contact</a>
               </li>
             </ul>
           </div>

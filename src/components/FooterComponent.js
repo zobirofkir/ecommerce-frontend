@@ -25,7 +25,7 @@ const FooterComponent = () => {
             <ul className="text-sm text-gray-600 mt-2 space-y-2">
               <li><a href="/" className="hover:text-blue-500">About Us</a></li>
               <li><a href="/" className="hover:text-blue-500">Careers</a></li>
-              <li><a href="/" className="hover:text-blue-500">Contact</a></li>
+              <li><a href="/contacts" className="hover:text-blue-500">Contact</a></li>
             </ul>
           </div>
         </div>
