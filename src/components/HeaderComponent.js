@@ -110,42 +110,75 @@ const HeaderComponent = () => {
           isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="flex justify-between items-center p-4 border-b">
-          <h3 className="text-lg font-semibold">Menu</h3>
-          <button onClick={toggleSidebar} className="text-gray-500">
+
+        <div className="flex justify-between items-center p-4 border-b bg-gray-50">
+          <h3 className="text-lg font-semibold text-gray-800">Menu</h3>
+          <button onClick={toggleSidebar} className="text-gray-500 hover:text-gray-700 transition">
             <i className="fa-solid fa-times text-xl"></i>
           </button>
         </div>
+
+
         <div className="p-4">
           <input
             type="text"
             placeholder="Search ..."
-            className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm mb-4"
+            className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <ul className="space-y-4">
-            <li className="text-gray-700 hover:text-blue-500">
-              <a href="/">Home</a>
-            </li>
-            <li className="text-gray-700 hover:text-blue-500">
-              <a href="/categories">Categories</a>
-            </li>
-            <li className="text-gray-700 hover:text-blue-500">
-              <a href="/products">Products</a>
-            </li>
-            <li className="text-gray-700 hover:text-blue-500">
-              <a href="/">Contact</a>
-            </li>
+        </div>
 
-            <select className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm mb-4 text-gray-700">
+
+        <nav className="p-4 space-y-4">
+          <ul className="space-y-4 text-gray-700">
+            <li>
+              <a href="/" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-solid fa-house text-gray-600"></i>
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/categories" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-solid fa-list text-gray-600"></i>
+                Categories
+              </a>
+            </li>
+            <li>
+              <a href="/products" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-solid fa-box text-gray-600"></i>
+                Products
+              </a>
+            </li>
+            <li>
+              <a href="/contact" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-solid fa-envelope text-gray-600"></i>
+                Contact
+              </a>
+            </li>
+            <li>
+              <a href="/carts" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-solid fa-cart-shopping text-gray-600"></i>
+                Carts
+              </a>
+            </li>
+            <li>
+              <a href="/wishlists" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-regular fa-heart text-gray-600"></i>
+                Wishlists
+              </a>
+            </li>
+          </ul>
+
+
+          <div className="pt-4">
+            <select className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="All">Categories</option>
               <option value="Men">Men</option>
               <option value="Women">Women</option>
               <option value="Kids">Kids</option>
             </select>
-          </ul>
-        </div>
+          </div>
+        </nav>
       </div>
-
       <div className="hidden lg:block z-50 relative fixed top-0 left-0 w-full bg-gray-100">
         <div className="container mx-auto flex justify-between items-center px-4 py-3">
           <div className="flex items-center">
