@@ -149,12 +149,6 @@ const HeaderComponent = () => {
               </a>
             </li>
             <li>
-              <a href="/contact" className="flex items-center gap-3 hover:text-blue-500 transition">
-                <i className="fa-solid fa-envelope text-gray-600"></i>
-                Contact
-              </a>
-            </li>
-            <li>
               <a href="/carts" className="flex items-center gap-3 hover:text-blue-500 transition">
                 <i className="fa-solid fa-cart-shopping text-gray-600"></i>
                 Carts
@@ -166,9 +160,27 @@ const HeaderComponent = () => {
                 Wishlists
               </a>
             </li>
+            <li>
+              <a href="/contact" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-solid fa-envelope text-gray-600"></i>
+                Contact
+              </a>
+            </li>
+            <li>
+              <a href="/login" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-solid fa-sign-in-alt text-gray-600"></i>
+                Login
+              </a>
+            </li>
+            <li>
+              <a href="/register" className="flex items-center gap-3 hover:text-blue-500 transition">
+                <i className="fa-solid fa-user-plus text-gray-600"></i>
+                Register
+              </a>
+            </li>
           </ul>
 
-
+          {/* Categories Dropdown */}
           <div className="pt-4">
             <select className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="All">Categories</option>
@@ -179,6 +191,7 @@ const HeaderComponent = () => {
           </div>
         </nav>
       </div>
+
       <div className="hidden lg:block z-50 relative fixed top-0 left-0 w-full bg-gray-100">
         <div className="container mx-auto flex justify-between items-center px-4 py-3">
           <div className="flex items-center">
