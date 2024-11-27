@@ -7,10 +7,10 @@ import ProductScreen from '../screens/ProductScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import CartScreen from '../screens/CartScreen';
 import WishlistScreen from '../screens/LikedProductScreen';
-import LoginScreen from '../screens/LoginScreen';
-import RegisterScreen from '../screens/RegisterScreen';
+import LoginScreen from '../screens/auth/LoginScreen';
+import RegisterScreen from '../screens/auth/RegisterScreen';
 import ContactScreen from '../screens/ContactScreen';
-import ForgotPasswordScreet from '../screens/ForgotPasswordScreen';
+import ForgotPasswordScreet from '../screens/auth/ForgotPasswordScreen';
 
 const AppRoutes = () => {
   return (

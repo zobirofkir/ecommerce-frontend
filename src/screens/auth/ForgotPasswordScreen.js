@@ -1,5 +1,5 @@
 import React from 'react'
-import ForgotPasswordComponent from '../components/ForgotPasswordComponent'
+import ForgotPasswordComponent from '../../components/auth/ForgotPasswordComponent'
 
 const ForgotPasswordScreen = () => {
   return (

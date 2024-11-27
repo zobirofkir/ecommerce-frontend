@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { forgotPasswordAction } from '../redux/actions/ForgotPasswordAction';
+import { forgotPasswordAction } from '../../redux/actions/ForgotPasswordAction';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
