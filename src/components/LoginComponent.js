@@ -9,21 +9,25 @@ const LoginComponent = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const {error} = useSelector((state) => state.login);
-
-  useEffect(() => {
-    if (error) {
-      toast.error(error); 
-    }
-  }, [error]);
+  const { error, success } = useSelector((state) => state.login);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEmail('');
-    setPassword('');
 
-    dispatch(loginAction(email, password)); 
+
+    dispatch(loginAction(email, password));
   };
+  
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+
+    if (success) {
+      toast.success('Login Successful');
+    }
+
+  }, [error, success]);
 
   return (
     <>
@@ -67,6 +71,12 @@ const LoginComponent = () => {
                 Don't have an account?{' '}
                 <a href="/register" className="text-gray-600 hover:underline">
                   Register
+                </a>
+              </p>
+              <p className="text-gray-600">
+                Forgot Password?{' '}
+                <a href="/forgot-password" className="text-gray-600 hover:underline">
+                  Reset Password
                 </a>
               </p>
             </div>

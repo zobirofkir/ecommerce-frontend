@@ -28,7 +28,7 @@ export const registerAction = (name, email, password) => {
             window.location.href = "/login";
             dispatch(registerSuccess(response.data)); 
         } catch (error) {
-            const errorMsg = error.response?.data?.message || error.message || "An error occurred";
+            const errorMsg = error.response?.data?.message || 'An error occurred. Please try again.';
             dispatch(registerFail(errorMsg)); 
         }
     };

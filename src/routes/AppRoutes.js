@@ -10,6 +10,7 @@ import WishlistScreen from '../screens/LikedProductScreen';
 import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import ContactScreen from '../screens/ContactScreen';
+import ForgotPasswordScreet from '../screens/ForgotPasswordScreen';
 
 const AppRoutes = () => {
   return (
@@ -21,8 +22,10 @@ const AppRoutes = () => {
             <Route path="/carts" element={<CartScreen />} />
             <Route path="/wishlists" element={<WishlistScreen />} />
             <Route path="/contacts" element={<ContactScreen />} />
+
             <Route path="/login" element={<LoginScreen />} />
             <Route path="/register" element={<RegisterScreen />} />
+            <Route path="/forgot-password" element={<ForgotPasswordScreet />} />
         </Route> 
       </Routes>
   )
