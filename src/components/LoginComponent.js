@@ -22,7 +22,7 @@ const LoginComponent = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:outline-none"
               placeholder="Enter your email"
             />
           </div>
@@ -33,14 +33,14 @@ const LoginComponent = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:outline-none"
               placeholder="Enter your password"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white font-bold py-2 rounded-lg hover:bg-blue-700 transition duration-300"
+            className="w-full bg-gray-600 text-white font-bold py-2 rounded-lg hover:bg-gray-700 transition duration-300"
           >
             Login
           </button>
@@ -48,7 +48,7 @@ const LoginComponent = () => {
           <div className="mt-4 text-center">
             <p className="text-gray-600">
               Don't have an account?{' '}
-              <a href="/register" className="text-blue-600 hover:underline">
+              <a href="/register" className="text-gray-600 hover:underline">
                 Register
               </a>
             </p>
