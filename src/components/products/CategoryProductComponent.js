@@ -11,6 +11,7 @@ const CategoryProductComponent = () => {
   useEffect(() => {
     if (slug) {
       dispatch(categoryProductAction(slug));
+      document.title = slug;
     }
   }, [dispatch, slug]);
 
