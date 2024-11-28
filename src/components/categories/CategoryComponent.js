@@ -28,7 +28,7 @@ const CategoryComponent = () => {
 
       <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {categories.map((category, index) => (
-          <a href={`/categories/${category.slug}`} key={index}>
+          <a href={`/categories/${category.slug}/products`} key={index}>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
                 src={category.image}

@@ -12,6 +12,7 @@ import RegisterScreen from '../screens/auth/RegisterScreen';
 import ContactScreen from '../screens/ContactScreen';
 import ForgotPasswordScreet from '../screens/auth/ForgotPasswordScreen';
 import ProductInfoScreen from '../screens/ProductInfoScreen';
+import CategoryProductScreen from '../screens/CategoryProductScreen';
 
 const AppRoutes = () => {
   return (
@@ -22,6 +23,8 @@ const AppRoutes = () => {
             <Route path="/products/:slug" element={<ProductInfoScreen />} />
 
             <Route path="/categories" element={<CategoryScreen />} />
+            <Route path="/categories/:slug/products" element={<CategoryProductScreen />} />
+            
             <Route path="/carts" element={<CartScreen />} />
             <Route path="/wishlists" element={<WishlistScreen />} />
             <Route path="/contacts" element={<ContactScreen />} />
