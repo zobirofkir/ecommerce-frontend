@@ -72,46 +72,43 @@ const OfferComponent = () => {
   }, [calculateRemainingTime, offers]);
 
   return (
-    <section className="bg-yellow-100 py-16">
-      <div className="container mx-auto px-4">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-extrabold text-gray-800">
-            Flushed Sales <span className="text-red-600">🔥</span>
-          </h1>
-        </div>
-
-        {/* Product Cards */}
-        <div className="flex justify-center gap-6">
-          {offers.map((offer, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-lg shadow-lg max-w-sm overflow-hidden hover:shadow-xl transition-shadow duration-300"
-            >
-              <img
-                src={offer.image}
-                alt={offer.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h1 className="text-2xl font-semibold text-gray-800">
-                  {offer.title}
-                </h1>
-                <h3 className="text-gray-600 mt-2">
-                  Time left:{" "}
-                  <span className="font-medium">
-                    {timeLeft[offer.startDate]?.hours || "00"}h : {timeLeft[offer.startDate]?.minutes || "00"}m : {timeLeft[offer.startDate]?.seconds || "00"}s
-                  </span>
-                </h3>
-                <h3 className="text-gray-900 mt-4 cursor-pointer hover:underline">
-                  See more
-                </h3>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="container mx-auto px-4">
+      {/* Hero Section */}
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-extrabold text-gray-800">
+          Flushed Sales <span className="text-red-600">🔥</span>
+        </h1>
       </div>
-    </section>
+
+      {/* Product Cards */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        {offers.map((offer, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-lg shadow-lg max-w-sm overflow-hidden hover:shadow-xl transition-shadow duration-300"
+          >
+            <img
+              src={offer.image}
+              alt={offer.title}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-6">
+              <h1 className="md:text-2xl text-md font-semibold text-gray-800">
+                {offer.title}
+              </h1>
+              <h3 className="text-gray-600 md:text-lg text-sm mt-2 text-red-600">
+                <span className="font-medium">
+                  {timeLeft[offer.startDate]?.hours || "00"}h : {timeLeft[offer.startDate]?.minutes || "00"}m : {timeLeft[offer.startDate]?.seconds || "00"}s
+                </span>
+              </h3>
+              <h3 className="text-gray-900 mt-4 cursor-pointer hover:underline">
+                See more
+              </h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

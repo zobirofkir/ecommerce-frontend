@@ -12,17 +12,29 @@ const HomeScreen = () => {
     <section>
       <SliderComponent />
 
-      <LastProductComponent />
+      <section className="bg-white py-12">
+        <LastProductComponent />
+      </section>
 
-      <OfferComponent />
+      <section className="bg-yellow-100 py-12">
+        <OfferComponent />
+      </section>
 
-      <ProductComponent />
+      <section className="bg-white py-12">
+        <ProductComponent />
+      </section>
 
-      <CategoryComponent />
+      <section className="bg-yellow-100 py-12">
+        <CategoryComponent />
+      </section>
 
-      <BrandComponent />
+      <section className="bg-white py-12">
+        <BrandComponent />
+      </section>
 
-      <AllProductComponent />
+      <section className="bg-yellow-100 py-12">
+        <AllProductComponent />
+      </section>
     </section>
   );
 };
