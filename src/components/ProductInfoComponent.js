@@ -4,6 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { productInfoAction } from '../redux/actions/ProductInfoAction';
 import { customers } from '../tests/CustomerTest';
 import { features } from '../tests/FeatureTest';
+import visa from '../images/payments/visa.png';
+import mastercard from '../images/payments/mastercard.png';
+import paypal from '../images/payments/paypal.png';
+import cash from '../images/payments/cash.png';
 
 const ProductInfoComponent = () => {
 
@@ -36,7 +40,6 @@ const ProductInfoComponent = () => {
 
   const product = productInfo;
 
-  // Ensure images is an array, split by commas if it's a string
   const images = Array.isArray(product.images) ? product.images : product.images.split(',');
 
   return (
@@ -101,7 +104,7 @@ const ProductInfoComponent = () => {
                 +
               </button>
             </div>
-            <button className="mt-4 w-full bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
+            <button className="mt-4 w-[50%] bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
               Add to Cart
             </button>
           </div>
@@ -113,6 +116,25 @@ const ProductInfoComponent = () => {
                 <li key={index}>{feature.description}</li>
               ))}
             </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Payments Methods Section */}
+      <div className="bg-white p-6 rounded-lg shadow-md mt-6">
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Payments Methods</h2>
+        <div className="flex gap-4 justify-center">
+          <div className="w-12 h-12">
+            <img src={visa} alt="Visa" className="w-full h-full object-contain" />
+          </div>
+          <div className="w-12 h-12">
+            <img src={mastercard} alt="MasterCard" className="w-full h-full object-contain" />
+          </div>
+          <div className="w-12 h-12">
+            <img src={paypal} alt="PayPal" className="w-full h-full object-contain" />
+          </div>
+          <div className="w-12 h-12">
+            <img src={cash} alt="Cash on Delivery" className="w-full h-full object-contain" />
           </div>
         </div>
       </div>
