@@ -30,7 +30,6 @@ export const categoryAction = () => {
     return async (dispatch) => {
         try {
             const response = await axiosClient.get("/categories");
-            console.log(response.data.data);
             dispatch(getCategorySuccess(response.data.data));
         }
         catch (error) {

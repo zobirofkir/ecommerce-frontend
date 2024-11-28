@@ -1,57 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { productAction } from '../redux/actions/ProductAction';
+import { categoryAction } from '../redux/actions/CategoryAction';
 
 const ProductComponent = () => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.product);
+  const { categories } = useSelector((state) => state.category);
 
-  const products = [
-    {
-      id: 1,
-      title: 'Product Title 1',
-      description: 'Short description of the product that highlights key features and benefits.',
-      price: 29.99,
-      imageUrl: 'https://images.samsung.com/n_africa/smartphones/galaxy-s24-ultra/images/galaxy-s24-ultra-share-image.jpg',
-      badge: "don't exist",
-    },
-    {
-      id: 2,
-      title: 'Product Title 2',
-      description: 'Another product description with great features and details.',
-      price: 19.99,
-      imageUrl: 'https://www.cdiscount.com/pdt2/8/8/3/1/1920x800/vib5057551887883/rw/vibox-viii-38-pc-gamer-27-165hz-ecran-pack-in.jpg',
-      badge: "exist",
-    },
-    {
-      id: 3,
-      title: 'Product Title 3',
-      description: 'This is another amazing product that you will love.',
-      price: 49.99,
-      imageUrl: 'https://ispot.ru/upload/iblock/bc1/saobzuzubgqblxtx7ycb2hmrjrxhomwh/4_1.jpg',
-      badge: "sale",
-    },
-    {
-      id: 1,
-      title: 'Product Title 1',
-      description: 'Short description of the product that highlights key features and benefits.',
-      price: 29.99,
-      imageUrl: 'https://images.samsung.com/n_africa/smartphones/galaxy-s24-ultra/images/galaxy-s24-ultra-share-image.jpg',
-      badge: "don't exist",
-    },
-    {
-      id: 2,
-      title: 'Product Title 2',
-      description: 'Another product description with great features and details.',
-      price: 19.99,
-      imageUrl: 'https://www.cdiscount.com/pdt2/8/8/3/1/1920x800/vib5057551887883/rw/vibox-viii-38-pc-gamer-27-165hz-ecran-pack-in.jpg',
-      badge: "exist",
-    },
-    {
-      id: 3,
-      title: 'Product Title 3',
-      description: 'This is another amazing product that you will love.',
-      price: 49.99,
-      imageUrl: 'https://ispot.ru/upload/iblock/bc1/saobzuzubgqblxtx7ycb2hmrjrxhomwh/4_1.jpg',
-      badge: "sale",
-    },
-  ]
+  const [filteredProducts, setFilteredProducts] = useState(products);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  useEffect(() => {
+    dispatch(productAction());
+    dispatch(categoryAction());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setFilteredProducts(
+      selectedCategory === "all"
+        ? products
+        : products.filter((product) => 
+            product.category_title.toLowerCase() === selectedCategory
+        )
+    );
+  }, [products, selectedCategory]);
+
+  const lastFiveCategories = categories.slice(-5);
 
   return (
     <div className="container mx-auto p-6">
@@ -59,48 +34,53 @@ const ProductComponent = () => {
       <div className="mb-12 md:block hidden">
         <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center">Shop by Category</h3>
         <div className="flex space-x-6 items-center justify-center overflow-x-auto flex-nowrap">
-          <button className="bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition">
-            Fashion
+          <button
+            className={`bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition ${
+              selectedCategory === "all" ? "bg-yellow-700" : ""
+            }`}
+            onClick={() => setSelectedCategory("all")}
+          >
+            All Categories
           </button>
-          <button className="bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition">
-            Electronics
-          </button>
-          <button className="bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition">
-            Gadgets
-          </button>
-          <button className="bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition">
-            Accessories
-          </button>
+          {lastFiveCategories.map((category) => (
+            <button
+              key={category.id} 
+              className={`bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition ${
+                selectedCategory === category.title.toLowerCase() ? "bg-yellow-700" : ""
+              }`}
+              onClick={() => setSelectedCategory(category.title.toLowerCase())} 
+            >
+              {category.title.charAt(0).toUpperCase() + category.title.slice(1)}
+            </button>
+          ))}
         </div>
-      </div>
-
-      <div className='md:hidden block flex justify-center items-center mb-12'>
-        <select className='bg-gray-300 text-black font-bold py-2 px-6 rounded-full hover:bg-gray-700 transition'>
-          <option value="fashion">Fashion</option>
-          <option value="electronics">Electronics</option>
-          <option value="gadgets">Gadgets</option>
-          <option value="accessories">Accessories</option>
-        </select>
       </div>
 
       {/* Featured Products Section */}
       <div className="mb-12">
         <h3 className="text-3xl font-bold text-gray-900 mb-6 text-center">Featured Products</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {products.map(product => (
-            <div key={product.id} className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transform hover:scale-105 transition duration-300">
+          {filteredProducts.map((product) => (
+            <div
+              key={product.id}
+              className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transform hover:scale-105 transition duration-300"
+            >
               <div className="relative">
-                <a href='/'>
-                  <img src={product.imageUrl} alt={product.title} className="w-full h-56 object-cover rounded-md hover:rotate-[10deg] transition duration-500 mb-4"/>
+                <a href={`/product/${product.slug}`}>
+                  <img
+                    src={product.images.split(',')[0].trim()}
+                    alt={product.title}
+                    className="w-full h-56 object-cover rounded-md hover:rotate-[10deg] transition duration-500 mb-4"
+                  />
                 </a>
-                <span className="absolute top-2 left-2 bg-green-600 text-white text-xs font-semibold py-1 px-3 rounded-full">
-                  {product.badge}
+                <span className="absolute top-2 left-2 bg-yellow-600 text-white text-xs font-semibold py-1 px-3 rounded-full">
+                  New
                 </span>
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.title}</h3>
-              <p className="text-sm text-gray-600 mb-4">{product.description}</p>
+              <p className="text-sm text-gray-600 mb-4">{product.description.substring(0, 20)}...</p>
               <div className="flex items-center justify-between">
-                <span className="text-xl font-bold text-gray-900">${product.price}</span>
+                <span className="text-xl font-bold text-gray-900">{product.price}</span>
                 <div className="flex space-x-4">
                   <button className="text-gray-600 hover:text-gray-800">
                     <i className="fas fa-cart-plus"></i>
@@ -115,7 +95,7 @@ const ProductComponent = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ProductComponent;
