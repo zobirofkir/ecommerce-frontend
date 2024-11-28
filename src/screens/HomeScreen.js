@@ -5,13 +5,16 @@ import BrandComponent from "../components/brands/BrandComponent";
 import ProductComponent from "../components/products/ProductComponent";
 import AllProductComponent from "../components/products/AllProductComponent";
 import CategoryComponent from "../components/categories/CategoryComponent";
+import OfferComponent from "../components/offers/OfferComponent";
 
 const HomeScreen = () => {
   return (
-    <div>
+    <section>
       <SliderComponent />
 
       <LastProductComponent />
+
+      <OfferComponent />
 
       <ProductComponent />
 
@@ -20,7 +23,7 @@ const HomeScreen = () => {
       <BrandComponent />
 
       <AllProductComponent />
-    </div>
+    </section>
   );
 };
 

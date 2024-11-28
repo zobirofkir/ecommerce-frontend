@@ -256,6 +256,10 @@ const HeaderComponent = () => {
                 <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
               <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/offers" className="block py-2 px-4">Offers</a>
+                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
+              </li>
+              <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
                 <a href="/contacts" className="block py-2 px-4">Contact</a>
                 <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
