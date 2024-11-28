@@ -78,12 +78,12 @@ const ProductInfoComponent = () => {
         <div className="lg:w-1/2">
           <h1 className="text-4xl font-bold text-gray-900">{product.title}</h1>
           <p className="text-lg text-gray-600 mt-4">{product.description}</p>
-          <div className="text-3xl font-bold text-yellow-600 mt-6">{product.price}</div>
+          <div className="text-3xl font-bold text-gray-600 mt-6">{product.price}</div>
 
           <div className="mt-4">
             <div className="flex gap-2 items-center">
               <button
-                className="bg-yellow-400 text-yellow-800 px-4 py-1 rounded-l-lg"
+                className="bg-gray-400 text-gray-800 px-4 py-1 rounded-l-lg"
                 onClick={() => handleQuantityChange(-1)}
               >
                 -
@@ -95,13 +95,13 @@ const ProductInfoComponent = () => {
                 className="w-12 h-8 text-center border border-gray-300"
               />
               <button
-                className="bg-yellow-400 text-yellow-800 px-4 py-1 rounded-r-lg"
+                className="bg-gray-400 text-gray-800 px-4 py-1 rounded-r-lg"
                 onClick={() => handleQuantityChange(1)}
               >
                 +
               </button>
             </div>
-            <button className="mt-4 w-full bg-yellow-500 text-white font-bold py-3 rounded-lg hover:bg-yellow-600 transition">
+            <button className="mt-4 w-full bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
               Add to Cart
             </button>
           </div>
@@ -130,7 +130,7 @@ const ProductInfoComponent = () => {
             <div>
               <div className="flex items-center justify-between">
                 <span className="text-lg font-bold">{review.user}</span>
-                <span className="text-yellow-500">
+                <span className="text-gray-500">
                   {'★'.repeat(review.rating)}
                   {'☆'.repeat(5 - review.rating)}
                 </span>
