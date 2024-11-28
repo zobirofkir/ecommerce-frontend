@@ -32,7 +32,7 @@ const LastProductsComponent = () => {
           <div key={product.id} className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transform hover:scale-105 transition duration-300">
             <div className="relative">
               
-              <a href='/'>
+              <a href={`/products/${product.slug}`}>
                 <img src={product.images.split(',')[0].trim()} alt={product.title} className="w-full h-56 object-cover rounded-md mb-4"/>
               </a>
 

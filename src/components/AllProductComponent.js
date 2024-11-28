@@ -19,10 +19,12 @@ const AllProductComponent = () => {
         <div className='flex flex-col justify-center items-center'>
             <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
                 {products.map((product) => (
-                    <div key={product.id} className='border border-gray-300 p-4 flex md:flex-row flex-col justify-center items-center gap-6'>
-                        <h2 className='text-lg font-semibold text-gray-900'>{product.title}</h2>
-                        <img src={product.images.split(',')[0].trim()} alt={product.title} className='w-32 h-32'/>
-                    </div>
+                    <a href={`/products/${product.slug}`}>
+                      <div key={product.id} className='border border-gray-300 p-4 flex md:flex-row flex-col justify-center items-center gap-6'>
+                          <h2 className='text-lg font-semibold text-gray-900'>{product.title}</h2>
+                          <img src={product.images.split(',')[0].trim()} alt={product.title} className='w-32 h-32'/>
+                      </div>
+                    </a>
                 ))}
             </div>
         </div>

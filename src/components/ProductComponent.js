@@ -66,7 +66,7 @@ const ProductComponent = () => {
               className="bg-white p-6 rounded-lg shadow-lg border border-gray-200 hover:shadow-xl transform hover:scale-105 transition duration-300"
             >
               <div className="relative">
-                <a href={`/product/${product.slug}`}>
+                <a href={`/products/${product.slug}`}>
                   <img
                     src={product.images.split(',')[0].trim()}
                     alt={product.title}
