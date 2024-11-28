@@ -23,7 +23,7 @@ const CategoryProductComponent = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {loading ? (
             <p>Loading products...</p>
-          ) : products.length > 0 ? ( // Use products from state
+          ) : products.length > 0 ? ( 
             products.map((product) => (
               <div
                 key={product.id}
