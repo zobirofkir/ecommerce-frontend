@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from '../../images/logo/logo.png';
+import { useDispatch, useSelector } from "react-redux";
+import { categoryAction } from "../../redux/actions/CategoryAction";
 
 const HeaderComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.category);
+
+  useEffect(() => {
+    dispatch(categoryAction());
+  }, [dispatch]);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -82,11 +91,21 @@ const HeaderComponent = () => {
                   placeholder="Search ..."
                   className="bg-transparent outline-none pl-2 text-sm"
                 />
-                <select className="bg-transparent outline-none ml-2 text-sm">
-                  <option value="All">Categories</option>
-                  <option value="Men">Men</option>
-                  <option value="Women">Women</option>
-                  <option value="Kids">Kids</option>
+                <select
+                  className="bg-transparent outline-none ml-2 text-sm"
+                  defaultValue=""
+                  onChange={(e) =>
+                    window.location.href = `/categories/${categories.find(category => category.title === e.target.value)?.slug}/products`
+                  }
+                >
+                  <option value="" disabled>
+                    Categories
+                  </option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.title}>
+                      {category.title}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
