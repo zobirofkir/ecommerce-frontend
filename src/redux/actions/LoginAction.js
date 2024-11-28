@@ -24,8 +24,8 @@ export const loginAction = (email, password) => {
                 email,
                 password,
             });
-            console.log(response.data);
             localStorage.setItem('accessToken', response.data.data.accessToken);
+            window.location.href = "/profile";
             dispatch(loginSuccess(response.data));
         }
         catch (error) {

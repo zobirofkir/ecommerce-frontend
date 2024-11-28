@@ -13,6 +13,8 @@ import ContactScreen from "../screens/products/ContactScreen";
 import ForgotPasswordScreet from "../screens/auth/ForgotPasswordScreen";
 import ProductInfoScreen from "../screens/products/ProductInfoScreen";
 import CategoryProductScreen from "../screens/products/CategoryProductScreen";
+import ProfileScreen from "../screens/auth/ProfileScreen";
+import ProtectedRoute from "../protected/ProtectedRoute";
 
 const AppRoutes = () => {
   return (
@@ -35,6 +37,15 @@ const AppRoutes = () => {
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/forgot-password" element={<ForgotPasswordScreet />} />
+
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <ProfileScreen />
+            </ProtectedRoute>
+          }
+        />
       </Route>
     </Routes>
   );

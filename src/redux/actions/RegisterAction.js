@@ -17,13 +17,13 @@ export const registerFail = (error) => {
     };
 };
 
-export const registerAction = (name, email, password) => {
+export const registerAction = (formData) => {
     return async (dispatch) => {
         try {
-            const response = await axiosClient.post("/auth/register", {
-                name,
-                email,
-                password,
+            const response = await axiosClient.post("/auth/register", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data", 
+                }
             });
             window.location.href = "/login";
             dispatch(registerSuccess(response.data)); 

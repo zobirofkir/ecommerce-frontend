@@ -3,6 +3,7 @@ import logo from '../../images/logo/logo.png';
 import { useDispatch, useSelector } from "react-redux";
 import { categoryAction } from "../../redux/actions/CategoryAction";
 import { productAction } from "../../redux/actions/ProductAction";
+import { getProfile } from "../../redux/actions/ProfileAction";
 
 const HeaderComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -10,10 +11,14 @@ const HeaderComponent = () => {
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.category);
   const { products } = useSelector((state) => state.product);
+  const { profile } = useSelector((state) => state.profile);
+
+  const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     dispatch(categoryAction());
     dispatch(productAction());
+    dispatch(getProfile());
   }, [dispatch]);
 
   const toggleSidebar = () => {
@@ -47,13 +52,21 @@ const HeaderComponent = () => {
             |
             <div className="flex flex-row gap-4">
               <span><i className="fa-regular fa-user"></i></span>
-              <p className="flex flex-row gap-2 font-semibold hover:text-yellow-400 transition duration-300 ease-out">
-                <a href="/login">Sign In</a>
-              </p>
-              |
-              <p className="flex flex-row gap-2 font-semibold hover:text-yellow-400 transition duration-300 ease-out">
-                <a href="/register">Sign Up</a>
-              </p>
+              {token ? (
+                <p className="flex flex-row gap-2 font-semibold hover:text-yellow-400 transition duration-300 ease-out">
+                  <a href="/profile">Profile</a>
+                </p>
+              ) : (
+                <>
+                  <p className="flex flex-row gap-2 font-semibold hover:text-yellow-400 transition duration-300 ease-out">
+                    <a href="/login">Sign In</a>
+                  </p>
+                  |
+                  <p className="flex flex-row gap-2 font-semibold hover:text-yellow-400 transition duration-300 ease-out">
+                    <a href="/register">Sign Up</a>
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -121,6 +134,15 @@ const HeaderComponent = () => {
               <a href="/carts">
                 <i className="fa-solid fa-cart-shopping text-gray-600 text-xl"></i> 
               </a>
+              {token && profile?.image && (
+                <a href="/profile">
+                  <img 
+                    src={profile?.image} 
+                    alt="Profile" 
+                    className="w-[35px] h-[35px] rounded-full flex justify-center items-center" 
+                />
+                </a>
+              )}
             </div>
           </div>
         </div>
@@ -140,6 +162,18 @@ const HeaderComponent = () => {
           </button>
         </div>
 
+        {/* Profile Image Section */}
+        {token && profile?.image && (
+          <div className="flex justify-center items-center p-4 border-b bg-gray-100">
+            <a href="/profile">
+              <img
+                src={profile.image}
+                alt="Profile"
+                className="w-16 h-16 rounded-full object-cover"
+              />
+            </a>
+          </div>
+        )}
 
         <div className="p-4">
           <input

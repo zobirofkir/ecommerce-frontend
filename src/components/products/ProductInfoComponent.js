@@ -17,6 +17,8 @@ const ProductInfoComponent = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
+  const token = localStorage.getItem("accessToken");
+
   useEffect(() => {
     if (slug) {
       dispatch(productInfoAction(slug));
@@ -112,9 +114,17 @@ const ProductInfoComponent = () => {
                 +
               </button>
             </div>
-            <button className="mt-4 w-[50%] bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
-              Add to Cart
-            </button>
+            {token ? (
+              <button className="mt-4 w-[50%] bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
+                Add to Cart
+              </button>
+          ) : (
+            <a href="/login">
+              <button className="mt-4 w-[50%] bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
+                Login to add to cart
+              </button>
+            </a>
+            )}
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-md mt-6">

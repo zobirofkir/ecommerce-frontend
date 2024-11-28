@@ -6,7 +6,7 @@ import categoryReducer from "../reducers/CategoryReducer";
 import productReducer from "../reducers/ProductReducer";
 import productInfoReducer from "../reducers/ProductInfoReducer";
 import categoryProductReducer from "../reducers/CategoryProductReducer";
-
+import { profileReducer } from "../reducers/ProfileReducer";
 import {thunk} from "redux-thunk"; 
 
 const rootReducer = combineReducers({
@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
     category: categoryReducer,
     product: productReducer,
     productInfo: productInfoReducer,
-    categoryProductReducer: categoryProductReducer
+    categoryProductReducer: categoryProductReducer,
+    profile: profileReducer
 });
 
 const store = createStore(
