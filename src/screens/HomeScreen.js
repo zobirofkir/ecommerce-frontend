@@ -1,27 +1,27 @@
-import React from 'react'
-import SliderComponent from '../components/SliderComponent'
-import LastProductComponent from '../components/LastProductComponent'
-import BrandComponent from '../components/BrandComponent'
-import ProductComponent from '../components/ProductComponent'
-import AllProductComponent from '../components/AllProductComponent'
-import CategoryComponent from '../components/CategoryComponent'
+import React from "react";
+import SliderComponent from "../components/sliders/SliderComponent";
+import LastProductComponent from "../components/products/LastProductComponent";
+import BrandComponent from "../components/brands/BrandComponent";
+import ProductComponent from "../components/products/ProductComponent";
+import AllProductComponent from "../components/products/AllProductComponent";
+import CategoryComponent from "../components/categories/CategoryComponent";
 
 const HomeScreen = () => {
   return (
     <div>
-      <SliderComponent/>
+      <SliderComponent />
 
-      <LastProductComponent/>
+      <LastProductComponent />
 
-      <ProductComponent/>
+      <ProductComponent />
 
-      <CategoryComponent/>
+      <CategoryComponent />
 
-      <BrandComponent/>
-      
-      <AllProductComponent/>
+      <BrandComponent />
+
+      <AllProductComponent />
     </div>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

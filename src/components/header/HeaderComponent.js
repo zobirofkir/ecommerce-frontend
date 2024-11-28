@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from '../images/logo/logo.png';
+import logo from '../../images/logo/logo.png';
 
 const HeaderComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

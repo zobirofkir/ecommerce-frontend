@@ -1,28 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { productInfoAction } from '../redux/actions/ProductInfoAction';
-import { customers } from '../tests/CustomerTest';
-import { features } from '../tests/FeatureTest';
-import visa from '../images/payments/visa.png';
-import mastercard from '../images/payments/mastercard.png';
-import paypal from '../images/payments/paypal.png';
-import cash from '../images/payments/cash.png';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { productInfoAction } from "../../redux/actions/ProductInfoAction";
+import { customers } from "../../tests/CustomerTest";
+import { features } from "../../tests/FeatureTest";
+import visa from "../../images/payments/visa.png";
+import mastercard from "../../images/payments/mastercard.png";
+import paypal from "../../images/payments/paypal.png";
+import cash from "../../images/payments/cash.png";
 
 const ProductInfoComponent = () => {
-
-  const { slug } = useParams(); 
+  const { slug } = useParams();
   const dispatch = useDispatch();
 
-  const { productInfo, error } = useSelector((state) => state.productInfo); 
+  const { productInfo, error } = useSelector((state) => state.productInfo);
   const [selectedImage, setSelectedImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     if (slug) {
-      dispatch(productInfoAction(slug)); 
+      dispatch(productInfoAction(slug));
     }
-  }, [dispatch, slug]);
+
+    if (productInfo && productInfo.title) {
+      document.title = productInfo.title;
+    }
+  }, [dispatch, slug, productInfo]);
 
   const handleQuantityChange = (change) => {
     if (quantity + change >= 1) {
@@ -40,14 +43,17 @@ const ProductInfoComponent = () => {
 
   const product = productInfo;
 
-  const images = Array.isArray(product.images) ? product.images : product.images.split(',');
+  const images = Array.isArray(product.images)
+    ? product.images
+    : product.images.split(",");
 
   return (
     <div className="container mx-auto p-6 bg-white rounded-lg shadow-md my-12">
       <div className="flex flex-col lg:flex-row gap-8">
-
         <div className="lg:w-1/2">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">Product Images</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">
+            Product Images
+          </h2>
           <div className="relative">
             {selectedImage ? (
               <img
@@ -81,7 +87,9 @@ const ProductInfoComponent = () => {
         <div className="lg:w-1/2">
           <h1 className="text-4xl font-bold text-gray-900">{product.title}</h1>
           <p className="text-lg text-gray-600 mt-4">{product.description}</p>
-          <div className="text-3xl font-bold text-gray-600 mt-6">{product.price}</div>
+          <div className="text-3xl font-bold text-gray-600 mt-6">
+            {product.price}
+          </div>
 
           <div className="mt-4">
             <div className="flex gap-2 items-center">
@@ -110,11 +118,14 @@ const ProductInfoComponent = () => {
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Key Features</h2>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Key Features
+            </h2>
             <ul className="list-disc pl-5 space-y-2 text-gray-700">
-              {features && features.map((feature, index) => (
-                <li key={index}>{feature.description}</li>
-              ))}
+              {features &&
+                features.map((feature, index) => (
+                  <li key={index}>{feature.description}</li>
+                ))}
             </ul>
           </div>
         </div>
@@ -122,45 +133,66 @@ const ProductInfoComponent = () => {
 
       {/* Payments Methods Section */}
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Payments Methods</h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+          Payments Methods
+        </h2>
         <div className="flex gap-4 justify-center">
           <div className="w-12 h-12">
-            <img src={visa} alt="Visa" className="w-full h-full object-contain" />
+            <img
+              src={visa}
+              alt="Visa"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="w-12 h-12">
-            <img src={mastercard} alt="MasterCard" className="w-full h-full object-contain" />
+            <img
+              src={mastercard}
+              alt="MasterCard"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="w-12 h-12">
-            <img src={paypal} alt="PayPal" className="w-full h-full object-contain" />
+            <img
+              src={paypal}
+              alt="PayPal"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="w-12 h-12">
-            <img src={cash} alt="Cash on Delivery" className="w-full h-full object-contain" />
+            <img
+              src={cash}
+              alt="Cash on Delivery"
+              className="w-full h-full object-contain"
+            />
           </div>
         </div>
       </div>
 
       {/* Reviews */}
       <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Customer Reviews</h2>
-        {customers.reviews && customers.reviews.map((review, index) => (
-          <div key={index} className="flex items-start gap-4 mb-4">
-            <img
-              src={review.avatar}
-              alt={`${review.user} avatar`}
-              className="w-12 h-12 rounded-full"
-            />
-            <div>
-              <div className="flex items-center justify-between">
-                <span className="text-lg font-bold">{review.user}</span>
-                <span className="text-gray-500">
-                  {'★'.repeat(review.rating)}
-                  {'☆'.repeat(5 - review.rating)}
-                </span>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+          Customer Reviews
+        </h2>
+        {customers.reviews &&
+          customers.reviews.map((review, index) => (
+            <div key={index} className="flex items-start gap-4 mb-4">
+              <img
+                src={review.avatar}
+                alt={`${review.user} avatar`}
+                className="w-12 h-12 rounded-full"
+              />
+              <div>
+                <div className="flex items-center justify-between">
+                  <span className="text-lg font-bold">{review.user}</span>
+                  <span className="text-gray-500">
+                    {"★".repeat(review.rating)}
+                    {"☆".repeat(5 - review.rating)}
+                  </span>
+                </div>
+                <p className="text-gray-600">{review.comment}</p>
               </div>
-              <p className="text-gray-600">{review.comment}</p>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </div>
   );

@@ -1,7 +1,10 @@
-import React from 'react';
-import CategoryComponent from '../components/CategoryComponent';
+import React, { useEffect } from 'react';
+import CategoryComponent from '../components/categories/CategoryComponent';
 
 const CategoryScreen = () => {
+  useEffect(() => {
+    document.title = "Categories";
+  }, [])
   return (
     <div>
       <CategoryComponent/>

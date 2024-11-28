@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { productAction } from '../redux/actions/ProductAction';
+import { productAction } from '../../redux/actions/ProductAction';
 
 const LastProductsComponent = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const LastProductsComponent = () => {
                 <img src={product.images.split(',')[0].trim()} alt={product.title} className="w-full h-56 object-cover rounded-md mb-4"/>
               </a>
 
-              <span className="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-semibold py-1 px-3 rounded-full">
+              <span className="absolute top-2 left-2 bg-yellow-600 text-white text-xs font-semibold py-1 px-3 rounded-full">
                 New
               </span>
             </div>

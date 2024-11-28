@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductInfoComponent from '../components/ProductInfoComponent'
+import ProductInfoComponent from '../components/products/ProductInfoComponent'
 
 const ProductInfoScreen = () => {
   return (

@@ -6,7 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import CartScreen from '../screens/CartScreen';
-import WishlistScreen from '../screens/LikedProductScreen';
+import WishlistScreen from '../screens/WishlistScreen';
 import LoginScreen from '../screens/auth/LoginScreen';
 import RegisterScreen from '../screens/auth/RegisterScreen';
 import ContactScreen from '../screens/ContactScreen';

@@ -1,7 +1,10 @@
-import React from 'react'
-import ContactComponent from '../components/ContactComponent'
+import React, { useEffect } from 'react'
+import ContactComponent from '../components/contacts/ContactComponent'
 
 const ContactScreen = () => {
+  useEffect(() => {
+    document.title = "Contacts";
+  }, [])
   return (
     <div>
         <ContactComponent/>
