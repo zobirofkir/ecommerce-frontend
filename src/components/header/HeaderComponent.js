@@ -242,18 +242,22 @@ const HeaderComponent = () => {
           </div>
           
           <div className="flex items-center w-full justify-center">
-            <ul className="flex gap-8 mt-5 mb-5">
-              <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
-                <a href="/">Home</a>
+            <ul className="flex gap-8 mt-5 mb-5 list-none p-0">
+              <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/" className="block py-2 px-4">Home</a>
+                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
-              <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
-                <a href="/categories">Categories</a>
+              <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/categories" className="block py-2 px-4">Categories</a>
+                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
-              <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
-                <a href="/products">Products</a>
+              <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/products" className="block py-2 px-4">Products</a>
+                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
-              <li className="text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
-                <a href="/contacts">Contact</a>
+              <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                <a href="/contacts" className="block py-2 px-4">Contact</a>
+                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
             </ul>
           </div>
