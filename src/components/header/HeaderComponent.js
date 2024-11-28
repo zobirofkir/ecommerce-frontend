@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import logo from '../../images/logo/logo.png';
 import { useDispatch, useSelector } from "react-redux";
 import { categoryAction } from "../../redux/actions/CategoryAction";
+import { productAction } from "../../redux/actions/ProductAction";
 
 const HeaderComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.category);
+  const { products } = useSelector((state) => state.product);
 
   useEffect(() => {
     dispatch(categoryAction());
+    dispatch(productAction());
   }, [dispatch]);
 
   const toggleSidebar = () => {
@@ -201,11 +204,19 @@ const HeaderComponent = () => {
 
           {/* Categories Dropdown */}
           <div className="pt-4">
-            <select className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-              <option value="All">Categories</option>
-              <option value="Men">Men</option>
-              <option value="Women">Women</option>
-              <option value="Kids">Kids</option>
+            <select
+              className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              defaultValue=""
+              onChange={(e) =>
+                window.location.href = `/categories/${categories.find(category => category.title === e.target.value)?.slug}/products`
+              }
+              >
+              <option value="">Categories</option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.title}>
+                  {category.title}
+                </option>
+              ))}
             </select>
           </div>
         </nav>
@@ -214,12 +225,20 @@ const HeaderComponent = () => {
       <div className="hidden lg:block z-50 relative fixed top-0 left-0 w-full bg-gray-100">
         <div className="container mx-auto flex justify-between items-center px-4 py-3">
           <div className="flex items-center">
-            <select className="w-[200px] bg-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700">
-              <option value="All">Last Products</option>
-              <option value="lenovo">Lenovo ThinkBook G2</option>
-              <option value="iphone">Iphone 14</option>
-              <option value="samsung">Samsung S23</option>
-            </select>
+          <select
+            className="w-[200px] bg-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700"
+            onChange={(e) => {
+              const product = products.find(p => p.title === e.target.value);
+              product && (window.location.href = `/products/${product.slug}`);
+            }}
+          >
+            <option value="">Last Products</option>
+            {products.map(product => (
+              <option key={product.id} value={product.title}>
+                {product.title}
+              </option>
+            ))}
+          </select>
           </div>
           
           <div className="flex items-center w-full justify-center">
