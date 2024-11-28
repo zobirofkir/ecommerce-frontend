@@ -72,7 +72,7 @@ const OfferComponent = () => {
   }, [calculateRemainingTime, offers]);
 
   return (
-    <section className="bg-gray-100 py-16">
+    <section className="bg-yellow-100 py-16">
       <div className="container mx-auto px-4">
         {/* Hero Section */}
         <div className="text-center mb-12">
