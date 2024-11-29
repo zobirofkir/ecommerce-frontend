@@ -222,18 +222,22 @@ const HeaderComponent = () => {
                 Contact
               </a>
             </li>
-            <li>
-              <a href="/login" className="flex items-center gap-3 hover:text-blue-500 transition">
-                <i className="fa-solid fa-sign-in-alt text-gray-600"></i>
-                Login
-              </a>
-            </li>
-            <li>
-              <a href="/register" className="flex items-center gap-3 hover:text-blue-500 transition">
-                <i className="fa-solid fa-user-plus text-gray-600"></i>
-                Register
-              </a>
-            </li>
+            {!token && (
+              <>
+              <li>
+                <a href="/login" className="flex items-center gap-3 hover:text-blue-500 transition">
+                  <i className="fa-solid fa-sign-in-alt text-gray-600"></i>
+                  Login
+                </a>
+              </li>
+              <li>
+                <a href="/register" className="flex items-center gap-3 hover:text-blue-500 transition">
+                  <i className="fa-solid fa-user-plus text-gray-600"></i>
+                  Register
+                </a>
+              </li>
+              </>
+            )}
           </ul>
 
           {/* Categories Dropdown */}
