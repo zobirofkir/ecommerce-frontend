@@ -46,7 +46,7 @@ const LastProductsComponent = () => {
             <p className="text-sm text-gray-600 mb-4">{product.description.substring(0, 20)}...</p>
 
             <div className="flex items-center justify-between">
-              <span className="text-xl font-bold text-gray-900">{product.price}</span>
+              <span className="text-xl font-bold text-gray-900">MAD {product.price}</span>
               <div className="flex space-x-4">
                 <button className="text-gray-600 hover:text-gray-800">
                   <i className="fas fa-cart-plus"></i>

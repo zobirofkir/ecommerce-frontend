@@ -5,6 +5,7 @@ import { getCartAction, deleteCartAction, updateCartAction } from '../../redux/a
 const CartComponent = () => {
   const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
+  const token = localStorage.getItem('accessToken');
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
@@ -45,7 +46,7 @@ const CartComponent = () => {
       <div className="bg-gray-100 rounded-lg shadow-lg p-6">
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
-            item.product && ( // Ensure item.product exists
+            item.product && ( 
               <div
                 key={item.id}
                 className="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm mb-4"
@@ -100,9 +101,17 @@ const CartComponent = () => {
           <p className="text-xl font-bold text-gray-800">MAD {totalPrice}</p>
         </div>
         <div className="mt-4 text-center">
-          <button className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-700 transition">
-            Proceed to Checkout
-          </button>
+          {token ? (
+            <button className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-700 transition">
+              Proceed to Checkout
+            </button>
+        ) : (
+            <a href='/login'>
+              <button className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-700 transition">
+                Login to checkout
+              </button>
+            </a>
+          )}
         </div>
       </div>
     </div>

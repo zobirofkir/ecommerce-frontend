@@ -91,7 +91,7 @@ const ProductComponent = () => {
               </p>
               <div className="flex items-center justify-between">
                 <span className="text-xl font-bold text-gray-900">
-                  {product.price}
+                  MAD {product.price}
                 </span>
                 <div className="flex space-x-4">
                   <button className="text-gray-600 hover:text-gray-800">

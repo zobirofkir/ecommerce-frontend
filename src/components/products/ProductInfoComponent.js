@@ -95,7 +95,7 @@ const ProductInfoComponent = () => {
           <h1 className="text-4xl font-bold text-gray-900">{productInfo.title}</h1>
           <p className="text-lg text-gray-600 mt-4">{productInfo.description}</p>
           <div className="text-3xl font-bold text-gray-600 mt-6">
-            {productInfo.price}
+            MAD {productInfo.price}
           </div>
 
           <div className="mt-4">
