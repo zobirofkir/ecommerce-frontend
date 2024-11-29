@@ -134,15 +134,6 @@ const HeaderComponent = () => {
               <a href="/carts">
                 <i className="fa-solid fa-cart-shopping text-gray-600 text-xl"></i> 
               </a>
-              {token && profile?.image && (
-                <a href="/profile">
-                  <img 
-                    src={profile?.image} 
-                    alt="Profile" 
-                    className="w-[35px] h-[35px] rounded-full flex justify-center items-center" 
-                />
-                </a>
-              )}
             </div>
           </div>
         </div>
@@ -304,13 +295,27 @@ const HeaderComponent = () => {
             </ul>
           </div>
 
-          <div className="flex items-center">
-            <a href="/">
-              <p className="text-gray-900 font-semibold text-md whitespace-nowrap">
-                Free shipping on orders over $100
-              </p>
-            </a>
-          </div>
+          {token ? (
+            <>
+                <div>
+                     <a href="/profile">
+                      <img
+                          className="w-10 h-10 rounded-full"
+                          src={profile?.image}
+                          alt={profile?.name}
+                        />
+                     </a>
+                </div>
+            </>
+          ) : (
+            <div className="flex items-center">
+              <a href="/">
+                <p className="text-gray-900 font-semibold text-md whitespace-nowrap">
+                  Free shipping on orders over $100
+                </p>
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
