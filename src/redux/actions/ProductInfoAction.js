@@ -21,7 +21,6 @@ export const productInfoAction = (slug) => {
   return async (dispatch) => {
     try {
       const response = await axiosClient.get(`/products/${slug}`);
-      console.log(response.data.data);
       dispatch(getProductInfoSuccess(response.data.data));
     } catch (error) {
       dispatch(getProductInfoFail(error.message || "Failed to fetch product info"));

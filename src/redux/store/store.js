@@ -8,6 +8,7 @@ import productInfoReducer from "../reducers/ProductInfoReducer";
 import categoryProductReducer from "../reducers/CategoryProductReducer";
 import { profileReducer } from "../reducers/ProfileReducer";
 import {thunk} from "redux-thunk"; 
+import cartReducer from "../reducers/CartReducer";
 
 const rootReducer = combineReducers({
     register: registerReducer,
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
     product: productReducer,
     productInfo: productInfoReducer,
     categoryProductReducer: categoryProductReducer,
-    profile: profileReducer
+    profile: profileReducer,
+    cart: cartReducer
 });
 
 const store = createStore(

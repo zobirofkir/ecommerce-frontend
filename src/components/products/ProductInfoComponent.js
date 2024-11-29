@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productInfoAction } from "../../redux/actions/ProductInfoAction";
@@ -8,6 +8,9 @@ import visa from "../../images/payments/visa.png";
 import mastercard from "../../images/payments/mastercard.png";
 import paypal from "../../images/payments/paypal.png";
 import cash from "../../images/payments/cash.png";
+import { addCartAction } from "../../redux/actions/CartAction";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductInfoComponent = () => {
   const { slug } = useParams();
@@ -23,16 +26,30 @@ const ProductInfoComponent = () => {
     if (slug) {
       dispatch(productInfoAction(slug));
     }
+  }, [dispatch, slug]);
 
-    if (productInfo && productInfo.title) {
+  useEffect(() => {
+    if (productInfo?.title) {
       document.title = productInfo.title;
     }
-  }, [dispatch, slug, productInfo]);
+  }, [productInfo]);
 
   const handleQuantityChange = (change) => {
     if (quantity + change >= 1) {
       setQuantity(quantity + change);
     }
+  };
+
+  const images = useMemo(() => {
+    return Array.isArray(productInfo?.images)
+      ? productInfo?.images
+      : productInfo?.images?.split(",");
+  }, [productInfo?.images]);
+
+  const addToCart = () => {
+    const cartItem = { ...productInfo, quantity };
+    dispatch(addCartAction(cartItem));
+    toast.success("Product added to cart!");
   };
 
   if (error) {
@@ -43,34 +60,22 @@ const ProductInfoComponent = () => {
     return <div>Loading...</div>;
   }
 
-  const product = productInfo;
-
-  const images = Array.isArray(product.images)
-    ? product.images
-    : product.images.split(",");
-
   return (
     <div className="container mx-auto p-6 bg-white rounded-lg shadow-md my-12">
+      <ToastContainer />
       <div className="flex flex-col lg:flex-row gap-8">
+        {/* Product Images */}
         <div className="lg:w-1/2">
           <h2 className="text-2xl font-semibold text-gray-900 mb-4 text-center">
             Product Images
           </h2>
           <div className="relative">
-            {selectedImage ? (
-              <img
-                src={selectedImage}
-                alt={product.title}
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
-                onClick={() => setSelectedImage(images[0])}
-              />
-            ) : (
-              <img
-                src={images[0]}
-                alt={product.title}
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
-              />
-            )}
+            <img
+              src={selectedImage || images[0]}
+              alt={productInfo.title}
+              className="w-full h-96 object-cover rounded-lg shadow-lg cursor-pointer"
+              onClick={() => setSelectedImage(images[0])}
+            />
           </div>
           <div className="flex mt-4 gap-2 overflow-x-auto">
             {images.map((image, index) => (
@@ -87,10 +92,10 @@ const ProductInfoComponent = () => {
 
         {/* Product Details */}
         <div className="lg:w-1/2">
-          <h1 className="text-4xl font-bold text-gray-900">{product.title}</h1>
-          <p className="text-lg text-gray-600 mt-4">{product.description}</p>
+          <h1 className="text-4xl font-bold text-gray-900">{productInfo.title}</h1>
+          <p className="text-lg text-gray-600 mt-4">{productInfo.description}</p>
           <div className="text-3xl font-bold text-gray-600 mt-6">
-            {product.price}
+            {productInfo.price}
           </div>
 
           <div className="mt-4">
@@ -115,15 +120,18 @@ const ProductInfoComponent = () => {
               </button>
             </div>
             {token ? (
-              <button className="mt-4 w-[50%] bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
+              <button
+                className="mt-4 w-[50%] bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition"
+                onClick={addToCart}
+              >
                 Add to Cart
               </button>
-          ) : (
-            <a href="/login">
-              <button className="mt-4 w-[50%] bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
-                Login to add to cart
-              </button>
-            </a>
+            ) : (
+              <a href="/login">
+                <button className="mt-4 w-[50%] bg-gray-500 text-white font-bold py-3 rounded-lg hover:bg-gray-600 transition">
+                  Login to add to cart
+                </button>
+              </a>
             )}
           </div>
 
@@ -132,10 +140,9 @@ const ProductInfoComponent = () => {
               Key Features
             </h2>
             <ul className="list-disc pl-5 space-y-2 text-gray-700">
-              {features &&
-                features.map((feature, index) => (
-                  <li key={index}>{feature.description}</li>
-                ))}
+              {features?.map((feature, index) => (
+                <li key={index}>{feature.description}</li>
+              ))}
             </ul>
           </div>
         </div>
@@ -143,66 +150,42 @@ const ProductInfoComponent = () => {
 
       {/* Payments Methods Section */}
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          Payments Methods
-        </h2>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Payments Methods</h2>
         <div className="flex gap-4 justify-center">
-          <div className="w-12 h-12">
-            <img
-              src={visa}
-              alt="Visa"
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <div className="w-12 h-12">
-            <img
-              src={mastercard}
-              alt="MasterCard"
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <div className="w-12 h-12">
-            <img
-              src={paypal}
-              alt="PayPal"
-              className="w-full h-full object-contain"
-            />
-          </div>
-          <div className="w-12 h-12">
-            <img
-              src={cash}
-              alt="Cash on Delivery"
-              className="w-full h-full object-contain"
-            />
-          </div>
+          {[visa, mastercard, paypal, cash].map((paymentMethod, index) => (
+            <div key={index} className="w-12 h-12">
+              <img
+                src={paymentMethod}
+                alt={paymentMethod}
+                className="w-full h-full object-contain"
+              />
+            </div>
+          ))}
         </div>
       </div>
 
       {/* Reviews */}
       <div className="bg-gray-100 p-6 rounded-lg shadow-md mt-8">
-        <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-          Customer Reviews
-        </h2>
-        {customers.reviews &&
-          customers.reviews.map((review, index) => (
-            <div key={index} className="flex items-start gap-4 mb-4">
-              <img
-                src={review.avatar}
-                alt={`${review.user} avatar`}
-                className="w-12 h-12 rounded-full"
-              />
-              <div>
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-bold">{review.user}</span>
-                  <span className="text-gray-500">
-                    {"★".repeat(review.rating)}
-                    {"☆".repeat(5 - review.rating)}
-                  </span>
-                </div>
-                <p className="text-gray-600">{review.comment}</p>
+        <h2 className="text-2xl font-semibold text-gray-900 mb-4">Customer Reviews</h2>
+        {customers.reviews?.map((review, index) => (
+          <div key={index} className="flex items-start gap-4 mb-4">
+            <img
+              src={review.avatar}
+              alt={`${review.user} avatar`}
+              className="w-12 h-12 rounded-full"
+            />
+            <div>
+              <div className="flex items-center justify-between">
+                <span className="text-lg font-bold">{review.user}</span>
+                <span className="text-gray-500">
+                  {"★".repeat(review.rating)}
+                  {"☆".repeat(5 - review.rating)}
+                </span>
               </div>
+              <p className="text-gray-600">{review.comment}</p>
             </div>
-          ))}
+          </div>
+        ))}
       </div>
     </div>
   );
