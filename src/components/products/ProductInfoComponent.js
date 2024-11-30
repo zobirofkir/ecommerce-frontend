@@ -6,8 +6,6 @@ import { customers } from "../../tests/CustomerTest";
 import { features } from "../../tests/FeatureTest";
 import visa from "../../images/payments/visa.png";
 import mastercard from "../../images/payments/mastercard.png";
-import paypal from "../../images/payments/paypal.png";
-import cash from "../../images/payments/cash.png";
 import { addCartAction } from "../../redux/actions/CartAction";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -154,7 +152,7 @@ const ProductInfoComponent = () => {
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
         <h2 className="text-2xl font-semibold text-gray-900 mb-4">Payments Methods</h2>
         <div className="flex gap-4 justify-center">
-          {[visa, mastercard, paypal, cash].map((paymentMethod, index) => (
+          {[visa, mastercard].map((paymentMethod, index) => (
             <div key={index} className="w-12 h-12">
               <img
                 src={paymentMethod}

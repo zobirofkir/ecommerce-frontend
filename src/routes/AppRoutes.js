@@ -15,6 +15,7 @@ import ProductInfoScreen from "../screens/products/ProductInfoScreen";
 import CategoryProductScreen from "../screens/products/CategoryProductScreen";
 import ProfileScreen from "../screens/auth/ProfileScreen";
 import ProtectedRoute from "../protected/ProtectedRoute";
+import OrderScreen from "../screens/orders/OrderScreen";
 
 const AppRoutes = () => {
   return (
@@ -38,11 +39,22 @@ const AppRoutes = () => {
         <Route path="/register" element={<RegisterScreen />} />
         <Route path="/forgot-password" element={<ForgotPasswordScreet />} />
 
+        {/**
+         * Protected Routes
+         */}
         <Route
           path="/profile"
           element={
             <ProtectedRoute>
               <ProfileScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute>
+              <OrderScreen />
             </ProtectedRoute>
           }
         />
