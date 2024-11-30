@@ -12,8 +12,9 @@ const CartComponent = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const token = localStorage.getItem("accessToken");
 
-  // State for controlling the payment modal
+  // State for controlling the payment modal and loading state
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [loading, setLoading] = useState(false); // Added loading state
 
   useEffect(() => {
     if (token) {
@@ -29,14 +30,16 @@ const CartComponent = () => {
   }, 0);
 
   const handlePaymentSelection = (paymentMethod) => {
-    // Close the modal
     setShowPaymentModal(false);
+    setLoading(true); // Set loading to true when payment is selected
 
     if (paymentMethod === "visa") {
-      dispatch(cartPaymentAction(token)); // Visa Payment action
+      dispatch(cartPaymentAction(token)).finally(() => {
+        setLoading(false); // Set loading to false after payment is processed
+      });
     } else if (paymentMethod === "cash") {
-      console.log("Cash on Delivery Selected"); // Handle Cash on Delivery logic here
-      // You can add a dispatch or API call if necessary
+      console.log("Cash on Delivery Selected");
+      setLoading(false); // Set loading to false if cash on delivery is selected
     }
   };
 
@@ -127,7 +130,7 @@ const CartComponent = () => {
               className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-700 transition"
               onClick={() => setShowPaymentModal(true)}
             >
-              Proceed to Checkout
+              {loading ? "Processing..." : "Proceed to Checkout"} {/* Show processing message */}
             </button>
           ) : (
             <a href="/login">
@@ -141,41 +144,40 @@ const CartComponent = () => {
 
       {/* Payment Method Modal */}
       {showPaymentModal && (
-          <div className="fixed inset-0 bg-gray-200 bg-opacity-75 flex items-center justify-center z-50">
-            <div className="bg-white p-8 rounded-lg shadow-lg w-96 relative">
+        <div className="fixed inset-0 bg-gray-200 bg-opacity-75 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-96 relative">
+            <button
+              onClick={() => setShowPaymentModal(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
+            >
+              <i className="fas fa-times text-xl"></i>
+            </button>
 
+            <h2 className="text-2xl font-bold text-gray-700 mb-6 flex items-center justify-center">
+              <i className="fas fa-credit-card mr-2 text-gray-500"></i>
+              Select Payment Method
+            </h2>
+
+            <div className="flex flex-col space-y-4">
               <button
-                onClick={() => setShowPaymentModal(false)}
-                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
+                onClick={() => handlePaymentSelection("visa")}
+                className="flex items-center justify-center bg-gray-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-500 transition"
               >
-                <i className="fas fa-times text-xl"></i>
+                <i className="fas fa-credit-card mr-2"></i>
+                Pay with Visa
               </button>
 
-              <h2 className="text-2xl font-bold text-gray-700 mb-6 flex items-center justify-center">
-                <i className="fas fa-credit-card mr-2 text-gray-500"></i>
-                Select Payment Method
-              </h2>
-
-              <div className="flex flex-col space-y-4">
-                <button
-                  onClick={() => handlePaymentSelection("visa")}
-                  className="flex items-center justify-center bg-gray-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-500 transition"
-                >
-                  <i className="fas fa-credit-card mr-2"></i>
-                  Pay with Visa
-                </button>
-
-                <button
-                  onClick={() => handlePaymentSelection("cash")}
-                  className="flex items-center justify-center bg-white text-black px-6 py-3 rounded-lg shadow-md hover:bg-white transition"
-                >
-                  <i className="fas fa-money-bill-wave mr-2"></i>
-                  Cash on Delivery
-                </button>
-              </div>
+              <button
+                onClick={() => handlePaymentSelection("cash")}
+                className="flex items-center justify-center bg-white text-black px-6 py-3 rounded-lg shadow-md hover:bg-white transition"
+              >
+                <i className="fas fa-money-bill-wave mr-2"></i>
+                Cash on Delivery
+              </button>
             </div>
           </div>
-        )}
+        </div>
+      )}
     </div>
   );
 };

@@ -128,12 +128,17 @@ const OrderComponent = () => {
                 0619920942
               </a>
             </p>
-            <div className="mt-8 text-right">
+            <div className="mt-8 text-right flex md:flex-row flex-col gap-2">
               <button
                 onClick={closeModal}
                 className="px-6 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all duration-200"
               >
                 Close
+              </button>
+              <button
+                className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
+              >
+                Delete
               </button>
             </div>
           </div>
