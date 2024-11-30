@@ -31,7 +31,7 @@ const OrderComponent = () => {
       case 'cancelled':
         return 'bg-red-500';
       default:
-        return 'bg-gray-500'; // Default for unknown status
+        return 'bg-gray-500';
     }
   };
 
@@ -53,7 +53,7 @@ const OrderComponent = () => {
               <tr key={order.id} className="border-b border-gray-200 hover:bg-gray-100">
                 <td className="px-6 py-4 text-sm">{order.name}</td>
                 <td className="px-6 py-4 text-sm">
-                  ${isNaN(parseFloat(order.total)) ? 'N/A' : parseFloat(order.total).toFixed(2)}
+                MAD {isNaN(parseFloat(order.total)) ? 'N/A' : parseFloat(order.total).toFixed(2)}
                 </td>
                 <td className="px-6 py-4 text-sm">  {new Date(order.created_at).getFullYear()} </td>
                 <td className="px-6 py-4 text-sm">
