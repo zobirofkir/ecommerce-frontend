@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCartAction,
@@ -12,12 +12,14 @@ const CartComponent = () => {
   const { cartItems } = useSelector((state) => state.cart);
   const token = localStorage.getItem("accessToken");
 
+  // State for controlling the payment modal
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    if (accessToken) {
+    if (token) {
       dispatch(getCartAction());
     }
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   const totalPrice = cartItems.reduce((acc, item) => {
     if (item.product && item.product.price) {
@@ -26,8 +28,16 @@ const CartComponent = () => {
     return acc;
   }, 0);
 
-  const handlePayment = () => {
-    dispatch(cartPaymentAction(token));
+  const handlePaymentSelection = (paymentMethod) => {
+    // Close the modal
+    setShowPaymentModal(false);
+
+    if (paymentMethod === "visa") {
+      dispatch(cartPaymentAction(token)); // Visa Payment action
+    } else if (paymentMethod === "cash") {
+      console.log("Cash on Delivery Selected"); // Handle Cash on Delivery logic here
+      // You can add a dispatch or API call if necessary
+    }
   };
 
   const handleDelete = (id) => {
@@ -115,7 +125,7 @@ const CartComponent = () => {
           {token ? (
             <button
               className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-700 transition"
-              onClick={handlePayment}
+              onClick={() => setShowPaymentModal(true)}
             >
               Proceed to Checkout
             </button>
@@ -128,6 +138,44 @@ const CartComponent = () => {
           )}
         </div>
       </div>
+
+      {/* Payment Method Modal */}
+      {showPaymentModal && (
+          <div className="fixed inset-0 bg-gray-200 bg-opacity-75 flex items-center justify-center z-50">
+            <div className="bg-white p-8 rounded-lg shadow-lg w-96 relative">
+
+              <button
+                onClick={() => setShowPaymentModal(false)}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition"
+              >
+                <i className="fas fa-times text-xl"></i>
+              </button>
+
+              <h2 className="text-2xl font-bold text-gray-700 mb-6 flex items-center justify-center">
+                <i className="fas fa-credit-card mr-2 text-gray-500"></i>
+                Select Payment Method
+              </h2>
+
+              <div className="flex flex-col space-y-4">
+                <button
+                  onClick={() => handlePaymentSelection("visa")}
+                  className="flex items-center justify-center bg-gray-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-500 transition"
+                >
+                  <i className="fas fa-credit-card mr-2"></i>
+                  Pay with Visa
+                </button>
+
+                <button
+                  onClick={() => handlePaymentSelection("cash")}
+                  className="flex items-center justify-center bg-white text-black px-6 py-3 rounded-lg shadow-md hover:bg-white transition"
+                >
+                  <i className="fas fa-money-bill-wave mr-2"></i>
+                  Cash on Delivery
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
     </div>
   );
 };
