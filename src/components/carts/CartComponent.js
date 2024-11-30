@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCartAction, deleteCartAction, updateCartAction } from '../../redux/actions/CartAction';
+import { cartPaymentAction } from '../../redux/actions/payments/CartPaymentAction';
 
 const CartComponent = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,11 @@ const CartComponent = () => {
     },
     0
   );
+
+
+  const handlePayment = () => {
+    dispatch(cartPaymentAction(token));
+  };
 
   const handleDelete = (id) => {
     dispatch(deleteCartAction(id));
@@ -102,7 +108,7 @@ const CartComponent = () => {
         </div>
         <div className="mt-4 text-center">
           {token ? (
-            <button className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-700 transition">
+            <button className="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-md hover:bg-gray-700 transition" onClick={handlePayment}>
               Proceed to Checkout
             </button>
         ) : (

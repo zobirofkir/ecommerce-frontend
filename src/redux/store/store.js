@@ -9,6 +9,7 @@ import categoryProductReducer from "../reducers/CategoryProductReducer";
 import { profileReducer } from "../reducers/ProfileReducer";
 import {thunk} from "redux-thunk"; 
 import cartReducer from "../reducers/CartReducer";
+import cartPaymentReducer from "../reducers/payments/CartPaymentReducer";
 
 const rootReducer = combineReducers({
     register: registerReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
     productInfo: productInfoReducer,
     categoryProductReducer: categoryProductReducer,
     profile: profileReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    cartPayment: cartPaymentReducer,
 });
 
 const store = createStore(
