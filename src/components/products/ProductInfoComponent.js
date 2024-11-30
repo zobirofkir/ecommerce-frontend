@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { productInfoAction } from "../../redux/actions/ProductInfoAction";
 import { customers } from "../../tests/CustomerTest";
@@ -19,6 +19,7 @@ const ProductInfoComponent = () => {
   const { productInfo, error } = useSelector((state) => state.productInfo);
   const [selectedImage, setSelectedImage] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
 
   const token = localStorage.getItem("accessToken");
 
@@ -50,6 +51,7 @@ const ProductInfoComponent = () => {
     const cartItem = { ...productInfo, quantity };
     dispatch(addCartAction(cartItem));
     toast.success("Product added to cart!");
+    navigate('/carts');
   };
 
   if (error) {
