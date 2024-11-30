@@ -297,7 +297,7 @@ const HeaderComponent = () => {
 
           {token ? (
             <>
-                <div>
+                <div className="flex items-center gap-3 w-10 h-10">
                      <a href="/profile">
                       <img
                           className="w-10 h-10 rounded-full"
