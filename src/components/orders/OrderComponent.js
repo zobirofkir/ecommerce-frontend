@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { orderAction } from '../../redux/actions/OrderAction';
+import PaginationComponent from '../paginations/PaginationComponent';
 
 const OrderComponent = () => {
   const dispatch = useDispatch();
@@ -8,6 +9,8 @@ const OrderComponent = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 5;
 
   useEffect(() => {
     dispatch(orderAction());
@@ -38,14 +41,18 @@ const OrderComponent = () => {
     setSelectedOrder(null);
   };
 
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = orders.slice(indexOfFirstOrder, indexOfLastOrder);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div className="container mx-auto my-10 p-8 bg-white shadow-lg rounded-lg">
-
       <header className="mb-8 text-center">
         <h1 className="text-4xl font-bold text-gray-800">Order Management</h1>
         <p className="text-gray-600 text-sm">View and manage all customer orders.</p>
       </header>
-
 
       {loading && (
         <div className="flex justify-center items-center min-h-[200px]">
@@ -53,13 +60,11 @@ const OrderComponent = () => {
         </div>
       )}
 
-
       {error && (
         <div className="bg-red-100 text-red-700 p-4 rounded-lg mb-6 text-center">
           <strong>Error:</strong> {error}
         </div>
       )}
-
 
       {!loading && !error && (
         <>
@@ -75,11 +80,11 @@ const OrderComponent = () => {
                   </tr>
                 </thead>
                 <tbody className="text-gray-800">
-                  {orders.map((order) => (
+                  {currentOrders.map((order) => (
                     <tr
                       key={order.id}
                       className="border-b border-gray-200 hover:bg-gray-100 cursor-pointer"
-                      onClick={() => openModal(order)} 
+                      onClick={() => openModal(order)}
                     >
                       <td className="px-6 py-4 text-sm">{order.name}</td>
                       <td className="px-6 py-4 text-sm">
@@ -99,9 +104,16 @@ const OrderComponent = () => {
                   ))}
                 </tbody>
               </table>
+              <div className="flex justify-center mt-6">
+                <PaginationComponent
+                  totalOrders={orders.length}
+                  ordersPerPage={ordersPerPage}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                />
+              </div>
             </div>
           ) : (
-
             <div className="text-center text-gray-600 p-10">
               <h2 className="text-2xl font-semibold">No Orders Found</h2>
               <p>Please check back later or refresh the page.</p>
@@ -110,35 +122,28 @@ const OrderComponent = () => {
         </>
       )}
 
-      {/* Modal for Contact Info */}
       {isModalOpen && selectedOrder && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full mx-4 sm:w-1/2 md:w-1/3">
             <h3 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Contact for More Info</h3>
-            <p className="text-gray-600 mb-6 text-center">If you have any questions about this order, you can contact us using the details below:</p>
-            <p className="flex md:flex-row flex-col gap-2 justify-center mb-4 text-center">
-              <strong className="text-gray-800">Email:</strong> 
-              <a href="mailto:zobirofkir19@gmail.com" className="text-blue-600 hover:text-blue-800 transition-colors duration-200 text-center">
+            <p className="text-gray-600 mb-6 text-center">
+              If you have any questions about this order, you can contact us using the details below:
+            </p>
+            <p className="text-center">
+              <strong>Email:</strong>{' '}
+              <a href="mailto:zobirofkir19@gmail.com" className="text-blue-600">
                 zobirofkir19@gmail.com
               </a>
             </p>
-            <p className="flex md:flex-row flex-col gap-2 justify-center text-center">
-              <strong className="text-gray-800">Phone:</strong> 
-              <a href="tel:+212619920942" className="text-blue-600 hover:text-blue-800 transition-colors duration-200 text-center">
+            <p className="text-center">
+              <strong>Phone:</strong>{' '}
+              <a href="tel:+212619920942" className="text-blue-600">
                 0619920942
               </a>
             </p>
-            <div className="mt-8 text-right flex md:flex-row flex-col gap-2">
-              <button
-                onClick={closeModal}
-                className="px-6 py-3 bg-gray-700 text-white font-semibold rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all duration-200"
-              >
+            <div className="mt-8 text-right">
+              <button onClick={closeModal} className="px-6 py-3 bg-gray-700 text-white rounded-lg">
                 Close
-              </button>
-              <button
-                className="px-6 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200"
-              >
-                Delete
               </button>
             </div>
           </div>
