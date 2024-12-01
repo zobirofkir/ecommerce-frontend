@@ -31,15 +31,16 @@ const CartComponent = () => {
 
   const handlePaymentSelection = (paymentMethod) => {
     setShowPaymentModal(false);
-    setLoading(true); // Set loading to true when payment is selected
+    setLoading(true); 
 
     if (paymentMethod === "visa") {
       dispatch(cartPaymentAction(token)).finally(() => {
-        setLoading(false); // Set loading to false after payment is processed
+        setLoading(false); 
       });
     } else if (paymentMethod === "cash") {
       console.log("Cash on Delivery Selected");
-      setLoading(false); // Set loading to false if cash on delivery is selected
+      window.location.href = "/cash-on-delivery";
+      setLoading(false); 
     }
   };
 

@@ -16,6 +16,7 @@ import CategoryProductScreen from "../screens/products/CategoryProductScreen";
 import ProfileScreen from "../screens/auth/ProfileScreen";
 import ProtectedRoute from "../protected/ProtectedRoute";
 import OrderScreen from "../screens/orders/OrderScreen";
+import CashOnDeliveryScreen from "../screens/cash/CashOnDeliveryScreen";
 
 const AppRoutes = () => {
   return (
@@ -55,6 +56,14 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute>
               <OrderScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/cash-on-delivery"
+          element={
+            <ProtectedRoute>
+              <CashOnDeliveryScreen />
             </ProtectedRoute>
           }
         />
