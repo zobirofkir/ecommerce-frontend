@@ -9,7 +9,7 @@ import CartScreen from "../screens/carts/CartScreen";
 import WishlistScreen from "../screens/wishlists/WishlistScreen";
 import LoginScreen from "../screens/auth/LoginScreen";
 import RegisterScreen from "../screens/auth/RegisterScreen";
-import ContactScreen from "../screens/products/ContactScreen";
+import ContactScreen from "../screens/contacts/ContactScreen";
 import ForgotPasswordScreet from "../screens/auth/ForgotPasswordScreen";
 import ProductInfoScreen from "../screens/products/ProductInfoScreen";
 import CategoryProductScreen from "../screens/products/CategoryProductScreen";
