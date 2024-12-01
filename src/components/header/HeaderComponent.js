@@ -161,7 +161,7 @@ const HeaderComponent = () => {
                               role="option"
                               aria-selected="false"
                             >
-                              {product.title}
+                              {product.title.substring(0, 5)} ...
                             </li>
                           </div>
                         ))
@@ -464,7 +464,7 @@ const HeaderComponent = () => {
             <div className="flex items-center">
               <a href="/">
                 <p className="text-gray-900 font-semibold text-sm md:text-md whitespace-nowrap">
-                  Free shipping on orders over $100
+                  Free shipping on orders over MAD 100
                 </p>
               </a>
             </div>
