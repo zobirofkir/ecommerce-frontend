@@ -7,6 +7,8 @@ import { getProfile } from "../../redux/actions/ProfileAction";
 
 const HeaderComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const dispatch = useDispatch();
   const { categories } = useSelector((state) => state.category);
@@ -27,6 +29,21 @@ const HeaderComponent = () => {
     dispatch(productAction());
     dispatch(getProfile());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (searchTerm) {
+      const filtered = (products || []).filter((product) =>
+        product?.title?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts([]);
+    }
+  }, [searchTerm, products]);
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -109,17 +126,66 @@ const HeaderComponent = () => {
             <div className="flex justify-center w-full">
               <div className="flex items-center bg-gray-100 rounded-full px-3 py-1">
                 <i className="fa-solid fa-magnifying-glass text-gray-500"></i>
-                <input
-                  type="text"
-                  placeholder="Search ..."
-                  className="bg-transparent outline-none pl-2 text-sm"
-                />
+
+                <div className="flex flex-col items-center relative">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    placeholder="Search products..."
+                    className="bg-gray-100 rounded-full px-3 py-2 text-sm w-80 outline-none"
+                    aria-label="Search Products"
+                  />
+
+                  {searchTerm && (
+                    <ul
+                      className="absolute bg-white shadow-lg w-full mt-2 rounded-lg z-[999] mt-[40px]"
+                      role="listbox"
+                    >
+                      {filteredProducts.length > 0 ? (
+                        filteredProducts.map((product) => (
+                          <div className="flex flex-row justify-between items-center hover:bg-gray-200 cursor-pointer" 
+                            onClick={() =>
+                              (window.location.href = `/products/${product.slug}`)
+                            }
+                          >
+                            <img
+                              src={product.images.split(",")[0].trim()}
+                              alt={product.title}
+                              className="w-10 h-10 object-cover hover:scale-105 transition-transform duration-500"
+                            />
+
+                            <li
+                              key={product.id}
+                              className="px-3 py-2"
+                              role="option"
+                              aria-selected="false"
+                            >
+                              {product.title}
+                            </li>
+                          </div>
+                        ))
+                      ) : (
+                        <li className="px-3 py-2 text-gray-500" role="alert">
+                          No results found
+                        </li>
+                      )}
+                    </ul>
+                  )}
+                </div>
+
                 <select
                   className="bg-transparent outline-none ml-2 text-sm"
                   defaultValue=""
-                  onChange={(e) =>
-                    window.location.href = `/categories/${categories.find(category => category.title === e.target.value)?.slug}/products`
-                  }
+                  onChange={(e) => {
+                    const selectedCategory = categories.find(
+                      (category) => category.title === e.target.value
+                    );
+                    if (selectedCategory) {
+                      window.location.href = `/categories/${selectedCategory.slug}/products`;
+                    }
+                  }}
+                  aria-label="Category Selector"
                 >
                   <option value="" disabled>
                     Categories
@@ -135,14 +201,15 @@ const HeaderComponent = () => {
 
             {/* Icons */}
             <div className="flex items-center space-x-4">
-              <a href="/wishlists">
+              <a href="/wishlists" aria-label="Wishlist">
                 <i className="fa-regular fa-heart text-gray-600 text-xl"></i>
               </a>
-              <a href="/carts">
-                <i className="fa-solid fa-cart-shopping text-gray-600 text-xl"></i> 
+              <a href="/carts" aria-label="Cart">
+                <i className="fa-solid fa-cart-shopping text-gray-600 text-xl"></i>
               </a>
             </div>
           </div>
+
         </div>
       </nav>
 

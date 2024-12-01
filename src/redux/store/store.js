@@ -11,6 +11,7 @@ import {thunk} from "redux-thunk";
 import cartReducer from "../reducers/CartReducer";
 import stripePaymentReducer from "../reducers/payments/StripePaymentReducer";
 import orderReducer from "../reducers/OrderReducer";
+import searchReducer from "../reducers/SearchReducer";
 
 const rootReducer = combineReducers({
     register: registerReducer,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     profile: profileReducer,
     cart: cartReducer,
     stripePayment: stripePaymentReducer,
-    orders: orderReducer
+    orders: orderReducer,
+    search: searchReducer
 });
 
 const store = createStore(
