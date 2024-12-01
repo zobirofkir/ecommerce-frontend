@@ -128,6 +128,9 @@ const OrderComponent = () => {
 
       {/* Order Information */}
       <div className="space-y-4 mb-6">
+        <div className='flex justify-center'>
+          <img src={selectedOrder.products[0]?.images?.split(",")[0]?.trim()} alt={selectedOrder.name} className="w-20 h-20 object-cover rounded-lg" />
+        </div>
         <div className="flex justify-between">
           <span className="font-medium text-gray-800">Order ID:</span>
           <span className="text-gray-600">{selectedOrder.id}</span>
