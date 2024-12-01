@@ -17,13 +17,13 @@ const CashOnDeliveryComponent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Order Details:', formData);
-    // Handle form submission logic here (e.g., API call)
   };
 
   return (
     <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
       <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Cash on Delivery</h2>
       <form onSubmit={handleSubmit}>
+        
         {/* Name */}
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700 font-medium">
