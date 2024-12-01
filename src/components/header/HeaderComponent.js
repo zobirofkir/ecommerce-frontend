@@ -214,12 +214,25 @@ const HeaderComponent = () => {
                 Wishlists
               </a>
             </li>
-            <li>
-              <a href="/contacts" className="flex items-center gap-3 hover:text-blue-500 transition">
-                <i className="fa-solid fa-envelope text-gray-600"></i>
-                Contact
-              </a>
-            </li>
+            {!token ? (
+              <>
+                <li>
+                  <a href="/contacts" className="flex items-center gap-3 hover:text-blue-500 transition">
+                    <i className="fa-solid fa-envelope text-gray-600"></i>
+                    Contact
+                  </a>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <a href="/orders" className="flex items-center gap-3 hover:text-blue-500 transition">
+                    <i className="fa-solid fa-user text-gray-600"></i>
+                    Orders
+                  </a>
+                </li>
+              </>
+            )}
             {!token && (
               <>
               <li>
@@ -291,9 +304,19 @@ const HeaderComponent = () => {
               <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
                 <a href="/" className="block py-2 px-4">Offers</a>
               </li>
-              <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
-                <a href="/contacts" className="block py-2 px-4">Contact</a>
-              </li>
+              {!token ? (
+                <>
+                  <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                    <a href="/contacts" className="block py-2 px-4">Contact</a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
+                    <a href="/orders" className="block py-2 px-4">Orders</a>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
 
