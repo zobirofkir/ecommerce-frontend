@@ -49,7 +49,9 @@ const ProductInfoComponent = () => {
     const cartItem = { ...productInfo, quantity };
     dispatch(addCartAction(cartItem));
     toast.success("Product added to cart!");
-    navigate('/carts');
+    setTimeout(() => {
+      navigate('/carts');
+    }, 2000);
   };
 
   if (error) {
