@@ -13,7 +13,14 @@ const HeaderComponent = () => {
   const { products } = useSelector((state) => state.product);
   const { profile } = useSelector((state) => state.profile);
 
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
   const token = localStorage.getItem("accessToken");
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    window.location.href = "/";
+  };
 
   useEffect(() => {
     dispatch(categoryAction());
@@ -254,63 +261,82 @@ const HeaderComponent = () => {
       <div className="hidden lg:block z-50 relative fixed top-0 left-0 w-full bg-gray-100">
         <div className="container mx-auto flex justify-between items-center px-4 py-3">
           <div className="flex items-center">
-          <select
-            className="w-[200px] bg-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700"
-            onChange={(e) => {
-              const product = products.find(p => p.title === e.target.value);
-              product && (window.location.href = `/products/${product.slug}`);
-            }}
-          >
-            <option value="">Last Products</option>
-            {products.map(product => (
-              <option key={product.id} value={product.title}>
-                {product.title}
-              </option>
-            ))}
-          </select>
+            <select
+              className="w-[200px] bg-gray-300 rounded-lg px-4 py-2 text-sm text-gray-700"
+              onChange={(e) => {
+                const product = products.find(p => p.title === e.target.value);
+                product && (window.location.href = `/products/${product.slug}`);
+              }}
+            >
+              <option value="">Last Products</option>
+              {products.map(product => (
+                <option key={product.id} value={product.title}>
+                  {product.title}
+                </option>
+              ))}
+            </select>
           </div>
-          
+
           <div className="flex items-center w-full justify-center">
             <ul className="flex gap-8 mt-5 mb-5 list-none p-0">
               <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
                 <a href="/" className="block py-2 px-4">Home</a>
-                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
               <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
                 <a href="/categories" className="block py-2 px-4">Categories</a>
-                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
               <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
                 <a href="/products" className="block py-2 px-4">Products</a>
-                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
               <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
                 <a href="/" className="block py-2 px-4">Offers</a>
-                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
               <li className="group text-gray-900 font-semibold text-md hover:text-gray-950 transition duration-300 ease-out transform hover:scale-105">
                 <a href="/contacts" className="block py-2 px-4">Contact</a>
-                <span className="absolute left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300 ease-out"></span>
               </li>
             </ul>
           </div>
 
           {token ? (
-            <>
-                <div className="flex items-center gap-3 w-10 h-10">
-                     <a href="/profile">
-                      <img
-                          className="w-10 h-10 rounded-full"
-                          src={profile?.image}
-                          alt={profile?.name}
-                        />
-                     </a>
+            <div className="relative">
+              <div
+                className="flex items-center gap-3 w-10 h-10 cursor-pointer"
+                onClick={() => setDropdownVisible(!dropdownVisible)}
+              >
+                <img
+                  className="w-10 h-10 rounded-full object-cover border border-gray-300"
+                  src={profile?.image}
+                  alt={profile?.name || "Profile"}
+                />
+              </div>
+              {dropdownVisible && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-50">
+                  <ul className="py-2">
+                    <li>
+                      <a
+                        href="/profile"
+                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100 flex items-center mx-4"
+                      >
+                        <i className="fas fa-user-circle mr-2"></i> Profile
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="/"
+                        className="block px-4 py-2 text-red-600 hover:bg-red-100 flex items-center rounded-md mx-4"
+                        onClick={handleLogout}
+                      >
+                        <i className="fas fa-sign-out-alt mr-2"></i> Logout
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-            </>
+              )}
+            </div>
           ) : (
             <div className="flex items-center">
               <a href="/">
-                <p className="text-gray-900 font-semibold text-md whitespace-nowrap">
+                <p className="text-gray-900 font-semibold text-sm md:text-md whitespace-nowrap">
                   Free shipping on orders over $100
                 </p>
               </a>
