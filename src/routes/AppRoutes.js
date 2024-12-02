@@ -17,6 +17,7 @@ import ProfileScreen from "../screens/auth/ProfileScreen";
 import ProtectedRoute from "../protected/ProtectedRoute";
 import OrderScreen from "../screens/orders/OrderScreen";
 import CashOnDeliveryScreen from "../screens/cash/CashOnDeliveryScreen";
+import OfferScreen from "../screens/offers/OfferScreen";
 
 const AppRoutes = () => {
   return (
@@ -25,6 +26,8 @@ const AppRoutes = () => {
         <Route index element={<HomeScreen />} />
         <Route path="/products" element={<ProductScreen />} />
         <Route path="/products/:slug" element={<ProductInfoScreen />} />
+
+        <Route path="/offers" element={<OfferScreen />} />
 
         <Route path="/categories" element={<CategoryScreen />} />
         <Route
