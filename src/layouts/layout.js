@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import HeaderComponent from '../components/header/HeaderComponent';
 import FooterComponent from '../components/footer/FooterComponent';
+import NewsLetterComponent from '../components/newsletter/NewsLetterComponent';
 
 const layout = () => {
   return (
@@ -11,6 +12,10 @@ const layout = () => {
       </header>
       
         <Outlet/>
+
+      <section>
+        <NewsLetterComponent/>
+      </section>
 
       <footer>
         <FooterComponent/>

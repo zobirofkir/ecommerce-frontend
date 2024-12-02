@@ -12,6 +12,7 @@ import cartReducer from "../reducers/CartReducer";
 import stripePaymentReducer from "../reducers/payments/StripePaymentReducer";
 import orderReducer from "../reducers/OrderReducer";
 import searchReducer from "../reducers/SearchReducer";
+import { offerReducer } from "../reducers/OfferReducer";
 
 const rootReducer = combineReducers({
     register: registerReducer,
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
     cart: cartReducer,
     stripePayment: stripePaymentReducer,
     orders: orderReducer,
-    search: searchReducer
+    search: searchReducer,
+    offer: offerReducer,
 });
 
 const store = createStore(
