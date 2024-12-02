@@ -248,41 +248,43 @@ const HeaderComponent = () => {
             className="w-full bg-gray-100 rounded-lg px-4 py-2 text-sm border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
-          {searchTerm && (
-                  <ul
-                    className="absolute bg-white shadow-lg w-full rounded-lg z-[999] mt-[30px] mr-20 gap-2"
-                    role="listbox"
-                  >
-                    {filteredProducts.length > 0 ? (
-                      filteredProducts.map((product) => (
-                        <div className="flex flex-row justify-between items-center hover:bg-gray-200 cursor-pointer" 
-                          onClick={() =>
-                            (window.location.href = `/products/${product.slug}`)
-                          }
-                        >
-                          <img
-                            src={product.images.split(",")[0].trim()}
-                            alt={product.title}
-                            className="w-10 h-10 object-cover hover:scale-105 transition-transform duration-500"
-                          />
-
-                          <li
-                            key={product.id}
-                            className="px-3 py-2"
-                            role="option"
-                            aria-selected="false"
+          <div className="lg:hidden">
+            {searchTerm && (
+                    <ul
+                      className="absolute bg-white shadow-lg w-full rounded-lg z-[999] mt-[30px] mr-20 gap-2"
+                      role="listbox"
+                    >
+                      {filteredProducts.length > 0 ? (
+                        filteredProducts.map((product) => (
+                          <div className="flex flex-row justify-between items-center hover:bg-gray-200 cursor-pointer" 
+                            onClick={() =>
+                              (window.location.href = `/products/${product.slug}`)
+                            }
                           >
-                            {product.title.substring(0, 5)} ...
-                          </li>
-                        </div>
-                      ))
-                    ) : (
-                      <li className="px-3 py-2 text-gray-500" role="alert">
-                        No results found
-                      </li>
-                    )}
-                  </ul>
-          )}
+                            <img
+                              src={product.images.split(",")[0].trim()}
+                              alt={product.title}
+                              className="w-10 h-10 object-cover hover:scale-105 transition-transform duration-500"
+                            />
+
+                            <li
+                              key={product.id}
+                              className="px-3 py-2"
+                              role="option"
+                              aria-selected="false"
+                            >
+                              {product.title.substring(0, 5)} ...
+                            </li>
+                          </div>
+                        ))
+                      ) : (
+                        <li className="px-3 py-2 text-gray-500" role="alert">
+                          No results found
+                        </li>
+                      )}
+                    </ul>
+            )}
+          </div>
         </div>
 
 
