@@ -6,8 +6,8 @@ const FooterComponent = () => {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
 
         <div className="text-center md:text-left">
-          <h2 className="text-2xl font-semibold text-gray-800">Your E-Commerce</h2>
-          <p className="text-sm text-gray-600 mt-2">Your tagline or slogan here</p>
+          <h2 className="text-2xl font-semibold text-gray-800">csw-ecommerce</h2>
+          <p className="text-sm text-gray-600 mt-2">© {new Date().getFullYear()} csw-ecommerce. All rights reserved.</p>
         </div>
 
 
@@ -15,17 +15,16 @@ const FooterComponent = () => {
           <div>
             <h3 className="text-lg font-semibold text-gray-800">Shop</h3>
             <ul className="text-sm text-gray-600 mt-2 space-y-2">
-              <li><a href="/" className="hover:text-blue-500">New Arrivals</a></li>
-              <li><a href="/" className="hover:text-blue-500">Best Sellers</a></li>
-              <li><a href="/" className="hover:text-blue-500">Sale</a></li>
+              <li><a href="/products" className="hover:text-blue-500">Products</a></li>
+              <li><a href="/categories" className="hover:text-blue-500">Categories</a></li>
+              <li><a href="/offers" className="hover:text-blue-500">Offers</a></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-gray-800">Company</h3>
+            <h3 className="text-lg font-semibold text-gray-800">Our Info</h3>
             <ul className="text-sm text-gray-600 mt-2 space-y-2">
-              <li><a href="/" className="hover:text-blue-500">About Us</a></li>
-              <li><a href="/" className="hover:text-blue-500">Careers</a></li>
               <li><a href="/contacts" className="hover:text-blue-500">Contact</a></li>
+              <li><a href="/wishlists" className="hover:text-blue-500">Whislist</a></li>
             </ul>
           </div>
         </div>
@@ -46,7 +45,7 @@ const FooterComponent = () => {
 
 
       <div className="text-center mt-8 text-sm text-gray-500">
-        <p>&copy; 2024 Your E-Commerce. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} csw-ecommerce. All rights reserved.</p>
       </div>
     </footer>
   );
