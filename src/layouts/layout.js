@@ -5,6 +5,9 @@ import FooterComponent from '../components/footer/FooterComponent';
 import NewsLetterComponent from '../components/newsletter/NewsLetterComponent';
 
 const layout = () => {
+
+   const token = localStorage.getItem('accessToken');
+
   return (
     <min>
       <header>
@@ -13,9 +16,7 @@ const layout = () => {
       
         <Outlet/>
 
-      <section>
-        <NewsLetterComponent/>
-      </section>
+      {!token && <NewsLetterComponent/>}
 
       <footer>
         <FooterComponent/>
