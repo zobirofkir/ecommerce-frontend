@@ -1,4 +1,5 @@
-import { GET_PRODUCT_SUCCESS, GET_PRODUCT_FAIL } from "../actions/ProductAction";
+
+import { productTypes } from "../types/productTypes";
 
 const initialState = {
     products: [],
@@ -7,13 +8,13 @@ const initialState = {
 
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_PRODUCT_SUCCESS:
+        case productTypes.GET_PRODUCT_SUCCESS:
             return {
                 ...state,
                 products: action.payload,
                 error: null,
             };
-        case GET_PRODUCT_FAIL:
+        case productTypes.GET_PRODUCT_FAIL:
             return {
                 ...state,
                 products: [],

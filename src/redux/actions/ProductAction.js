@@ -1,18 +1,16 @@
-import axiosClient from "../../axios/axiosClient";
-
-export const GET_PRODUCT_SUCCESS = "GET_PRODUCT_SUCCESS";
-export const GET_PRODUCT_FAIL = "GET_PRODUCT_FAIL";
+import { productTypes } from "../../redux/types/productTypes";
+import productService from "../services/ProductService";
 
 export const getProductSuccess = (data) => {
     return {
-        type: GET_PRODUCT_SUCCESS,
+        type: productTypes.GET_PRODUCT_SUCCESS,
         payload: data
     };
 };
 
 export const getProductFail = (error) => {
     return {
-        type: GET_PRODUCT_FAIL,
+        type: productTypes.GET_PRODUCT_FAIL,
         payload: error
     };
 };
@@ -20,7 +18,7 @@ export const getProductFail = (error) => {
 export const productAction = () => {
     return async (dispatch) => {
         try {
-            const response = await axiosClient.get("/products");
+            const response = await productService();
             dispatch(getProductSuccess(response.data.data));
         } catch (error) {
             dispatch(getProductFail(error.message || "Failed to fetch products"));
