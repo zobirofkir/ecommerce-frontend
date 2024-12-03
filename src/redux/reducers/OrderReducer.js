@@ -1,4 +1,4 @@
-import { GET_ORDER_SUCCESS, GET_ORDER_FAIL, GET_ORDER } from "../actions/OrderAction";
+import { orderTypes }  from "../../redux/types/orderTypes";
 
 const initialState = {
     orders: [],  
@@ -8,19 +8,19 @@ const initialState = {
 
 const orderReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_ORDER:
+        case orderTypes.GET_ORDER:
             return {
                 ...state,
                 loading: true, 
             };
-        case GET_ORDER_SUCCESS:
+        case orderTypes.GET_ORDER_SUCCESS:
             return {
                 ...state,
                 orders: action.payload,
                 loading: false, 
                 error: null,
             };
-        case GET_ORDER_FAIL:
+        case orderTypes.GET_ORDER_FAIL:
             return {
                 ...state,
                 orders: [],
