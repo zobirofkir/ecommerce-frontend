@@ -1,4 +1,4 @@
-import { GET_SEARCH, GET_SEARCH_FAIL, GET_SEARCH_SUCCESS } from "../actions/SearchAction";
+import { searchTypes } from "../types/searchTypes";
 
 const initialState = {
     products: [],
@@ -8,14 +8,14 @@ const initialState = {
 
 const searchReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_SEARCH:
+        case searchTypes.GET_SEARCH:
             return {
                 ...state,
                 loading: true,
                 error: null, 
             };
 
-        case GET_SEARCH_SUCCESS:
+        case searchTypes.GET_SEARCH_SUCCESS:
             return {
                 ...state,
                 products: action.data, 
@@ -23,7 +23,7 @@ const searchReducer = (state = initialState, action) => {
                 loading: false,
             };
 
-        case GET_SEARCH_FAIL:
+        case searchTypes.GET_SEARCH_FAIL:
             return {
                 ...state,
                 products: [], 
