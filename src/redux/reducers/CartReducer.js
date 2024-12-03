@@ -1,79 +1,66 @@
-import {
-    ADD_CART_SUCCESS,
-    ADD_CART_FAIL,
-    GET_CART_SUCCESS,
-    GET_CART_FAIL,
-    DELETE_CART_SUCCESS,
-    DELETE_CART_FAIL,
-    UPDATE_CART_SUCCESS,
-    UPDATE_CART_FAIL,
-} from '../actions/CartAction';
+import { CartActionTypes } from "../types/cartActionTypes";
 
 const initialState = {
-    cartItems: [], 
-    loading: false,
-    error: null, 
+  cartItems: [],
+  loading: false,
+  error: null,
 };
 
 const cartReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_CART_SUCCESS:
-            return {
-                ...state,
-                cartItems: [...state.cart, action.data], 
-                error: null,
-            };
+  switch (action.type) {
+    case CartActionTypes.ADD_CART_REQUEST:
+    case CartActionTypes.GET_CART_REQUEST:
+    case CartActionTypes.UPDATE_CART_REQUEST:
+    case CartActionTypes.DELETE_CART_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
 
-        case ADD_CART_FAIL:
-            return {
-                ...state,
-                error: action.error,
-            };
+    case CartActionTypes.ADD_CART_SUCCESS:
+      return {
+        ...state,
+        cartItems: [...state.cartItems, action.payload],
+        loading: false,
+      };
 
-        case GET_CART_SUCCESS:
-            return {
-                ...state,
-                cartItems: action.data, 
-                error: null,
-            };
+    case CartActionTypes.GET_CART_SUCCESS:
+      return {
+        ...state,
+        cartItems: action.payload,
+        loading: false,
+      };
 
-        case GET_CART_FAIL:
-            return {
-                ...state,
-                error: action.error,
-            };
+    case CartActionTypes.UPDATE_CART_SUCCESS:
+      return {
+        ...state,
+        cartItems: state.cartItems.map((item) =>
+          item.id === action.payload.id ? action.payload : item
+        ),
+        loading: false,
+      };
 
-        case DELETE_CART_SUCCESS:
-            return {
-                ...state,
-                cartItems: state.cartItems.filter((item) => item.id !== action.id), 
-                error: null,
-            };
-                
-        case DELETE_CART_FAIL:
-            return {
-                ...state,
-                error: action.error,
-            };
+    case CartActionTypes.DELETE_CART_SUCCESS:
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((item) => item.id !== action.payload),
+        loading: false,
+      };
 
-        case UPDATE_CART_SUCCESS:
-            return {
-                ...state,
-                cartItems: state.cartItems.map((item) =>
-                    item.id === action.data.id ? { ...item, quantity: action.data.quantity } : item
-                ),
-                error: null,
-            };
-                
-        case UPDATE_CART_FAIL:
-            return {
-                ...state,
-                error: action.error,
-            };
+    case CartActionTypes.ADD_CART_FAIL:
+    case CartActionTypes.GET_CART_FAIL:
+    case CartActionTypes.UPDATE_CART_FAIL:
+    case CartActionTypes.DELETE_CART_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default cartReducer;
