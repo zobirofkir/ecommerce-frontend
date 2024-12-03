@@ -1,7 +1,4 @@
-import {
-  GET_PAYMENT_FAIL,
-  GET_PAYMENT_SUCCESS,
-} from "../../actions/payments/StripePaymentAction";
+import { stripePaymentTypes } from "../../types/payments/stripePaymentTypes";
 
 const initialState = {
   cartItems: [],
@@ -15,13 +12,13 @@ const initialState = {
 
 const stripePaymentReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_PAYMENT_SUCCESS:
+    case stripePaymentTypes.GET_PAYMENT_SUCCESS:
       return {
         ...state,
         cartItems: action.payload,
         error: null,
       };
-    case GET_PAYMENT_FAIL:
+    case stripePaymentTypes.GET_PAYMENT_FAIL:
       return {
         ...state,
         cartItems: [],
