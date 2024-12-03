@@ -1,4 +1,4 @@
-import { LOGIN_FAIL, LOGIN_SUCCESS } from "../actions/LoginAction";
+import { loginTypes } from '../types/loginTypes'
 
 const initialState = {
     isLoggedIn: false, 
@@ -9,14 +9,14 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
     switch (action.type) {
-        case LOGIN_SUCCESS:
+        case loginTypes.LOGIN_SUCCESS:
             return {
                 ...state,
                 isLoggedIn: true,
                 user: action.payload,
                 error: null
             };
-        case LOGIN_FAIL:
+        case loginTypes.LOGIN_FAIL:
             return {
                 ...state,
                 isLoggedIn: false,

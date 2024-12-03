@@ -1,37 +1,32 @@
-import axiosClient from "../../axios/axiosClient";
-
-export  const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
+import { loginService } from "../services/loginService";
+import { loginTypes } from "../types/loginTypes";
 
 export function loginSuccess(data) {
-    return {
-        type: LOGIN_SUCCESS,
-        payload: data
-    };
+  return {
+    type: loginTypes.LOGIN_SUCCESS,
+    payload: data,
+  };
 }
 
 export function loginFail(error) {
-    return {
-        type: LOGIN_FAIL,
-        payload: error
-    };
+  return {
+    type: loginTypes.LOGIN_FAIL,
+    payload: error,
+  };
 }
 
 export const loginAction = (email, password) => {
-    return async (dispatch) => {
-        try {
-            const response = await axiosClient.post("/auth/login", {
-                email,
-                password,
-            });
-            localStorage.setItem('accessToken', response.data.data.accessToken);
-            localStorage.setItem('name', response.data.data.name);
-            window.location.href = "/profile";
-            dispatch(loginSuccess(response.data));
-        }
-        catch (error) {
-            const errorMsg = error.response?.data?.message || 'An error occurred. Please try again.';
-            dispatch(loginFail(errorMsg));
-        }
-    };
+  return async (dispatch) => {
+    try {
+      const response = await loginService(email, password);
+      localStorage.setItem("accessToken", response.data.data.accessToken);
+      localStorage.setItem("name", response.data.data.name);
+      window.location.href = "/profile";
+      dispatch(loginSuccess(response.data));
+    } catch (error) {
+      const errorMsg =
+        error.response?.data?.message || "An error occurred. Please try again.";
+      dispatch(loginFail(errorMsg));
+    }
+  };
 };
