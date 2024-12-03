@@ -1,18 +1,16 @@
-import axiosClient from "../../axios/axiosClient";
-
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAIL = "REGISTER_FAIL";
+import registerService from "../services/registerService";
+import { registerTypes } from "../types/registerTypes";
 
 export const registerSuccess = (user) => {
     return {
-        type: REGISTER_SUCCESS,
+        type: registerTypes.REGISTER_SUCCESS,
         payload: user
     };
 };
 
 export const registerFail = (error) => {
     return {
-        type: REGISTER_FAIL,
+        type: registerTypes.REGISTER_FAIL,
         payload: error
     };
 };
@@ -20,11 +18,7 @@ export const registerFail = (error) => {
 export const registerAction = (formData) => {
     return async (dispatch) => {
         try {
-            const response = await axiosClient.post("/auth/register", formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data", 
-                }
-            });
+            const response = await registerService(formData);
             window.location.href = "/login";
             dispatch(registerSuccess(response.data)); 
         } catch (error) {
