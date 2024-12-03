@@ -1,4 +1,4 @@
-export const CartActionTypes = {
+export const CartTypes = {
     ADD_CART_REQUEST: "ADD_CART_REQUEST",
     ADD_CART_SUCCESS: "ADD_CART_SUCCESS",
     ADD_CART_FAIL: "ADD_CART_FAIL",

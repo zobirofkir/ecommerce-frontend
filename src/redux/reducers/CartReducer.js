@@ -1,4 +1,4 @@
-import { CartActionTypes } from "../types/cartActionTypes";
+import { CartTypes } from "../types/cartTypes";
 
 const initialState = {
   cartItems: [],
@@ -8,31 +8,31 @@ const initialState = {
 
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
-    case CartActionTypes.ADD_CART_REQUEST:
-    case CartActionTypes.GET_CART_REQUEST:
-    case CartActionTypes.UPDATE_CART_REQUEST:
-    case CartActionTypes.DELETE_CART_REQUEST:
+    case CartTypes.ADD_CART_REQUEST:
+    case CartTypes.GET_CART_REQUEST:
+    case CartTypes.UPDATE_CART_REQUEST:
+    case CartTypes.DELETE_CART_REQUEST:
       return {
         ...state,
         loading: true,
         error: null,
       };
 
-    case CartActionTypes.ADD_CART_SUCCESS:
+    case CartTypes.ADD_CART_SUCCESS:
       return {
         ...state,
         cartItems: [...state.cartItems, action.payload],
         loading: false,
       };
 
-    case CartActionTypes.GET_CART_SUCCESS:
+    case CartTypes.GET_CART_SUCCESS:
       return {
         ...state,
         cartItems: action.payload,
         loading: false,
       };
 
-    case CartActionTypes.UPDATE_CART_SUCCESS:
+    case CartTypes.UPDATE_CART_SUCCESS:
       return {
         ...state,
         cartItems: state.cartItems.map((item) =>
@@ -41,17 +41,17 @@ const cartReducer = (state = initialState, action) => {
         loading: false,
       };
 
-    case CartActionTypes.DELETE_CART_SUCCESS:
+    case CartTypes.DELETE_CART_SUCCESS:
       return {
         ...state,
         cartItems: state.cartItems.filter((item) => item.id !== action.payload),
         loading: false,
       };
 
-    case CartActionTypes.ADD_CART_FAIL:
-    case CartActionTypes.GET_CART_FAIL:
-    case CartActionTypes.UPDATE_CART_FAIL:
-    case CartActionTypes.DELETE_CART_FAIL:
+    case CartTypes.ADD_CART_FAIL:
+    case CartTypes.GET_CART_FAIL:
+    case CartTypes.UPDATE_CART_FAIL:
+    case CartTypes.DELETE_CART_FAIL:
       return {
         ...state,
         loading: false,

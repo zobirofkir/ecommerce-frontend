@@ -1,4 +1,4 @@
-import { categoryActionTypes } from "../types/categoryActionTypes";
+import { categoryTypes } from "../types/categoryTypes";
 
 const initialState = {
     categories: [],
@@ -7,13 +7,13 @@ const initialState = {
 
 const categoryReducer = (state = initialState, action) => {
     switch (action.type) {
-        case categoryActionTypes.GET_CATEGORY_SUCCESS:
+        case categoryTypes.GET_CATEGORY_SUCCESS:
             return {
                 ...state,
                 categories: action.payload,
                 error: null,
             };
-        case categoryActionTypes.GET_CATEGORY_FAIL:
+        case categoryTypes.GET_CATEGORY_FAIL:
             return {
                 ...state,
                 categories: [],

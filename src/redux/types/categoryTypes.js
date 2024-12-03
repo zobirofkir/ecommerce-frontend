@@ -1,4 +1,4 @@
-export const categoryActionTypes = {
+export const categoryTypes = {
      GET_CATEGORY_SUCCESS : "GET_CATEGORY_SUCCESS",
      GET_CATEGORY_FAIL : "GET_CATEGORY_FAIL",
 };

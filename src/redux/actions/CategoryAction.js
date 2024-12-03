@@ -1,16 +1,16 @@
-import { categoryActionTypes } from "../types/categoryActionTypes";
+import { categoryTypes } from "../types/categoryTypes";
 import categoryService from "../services/categoryService";
 
 export const getCategorySuccess = (data) => {
     return {
-        type: categoryActionTypes.GET_CATEGORY_SUCCESS,
+        type: categoryTypes.GET_CATEGORY_SUCCESS,
         payload: data,
     };
 };
 
 export const getCategoryFail = (error) => {
     return {
-        type: categoryActionTypes.GET_CATEGORY_FAIL,
+        type: categoryTypes.GET_CATEGORY_FAIL,
         payload: error.response?.data || error.message,
     };
 };
