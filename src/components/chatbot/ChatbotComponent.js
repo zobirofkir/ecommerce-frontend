@@ -13,7 +13,7 @@ const ChatbotComponent = () => {
    * gemini api key
    */
   const GEMINI_API_KEY = "AIzaSyAmhQpgGf7FcPf4FVUErBotW6MMWQ_AGRk";
-  const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent";
+  const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
   useEffect(() => {
     scrollToBottom();
@@ -66,7 +66,7 @@ const ChatbotComponent = () => {
       /**
        * Extract the response text from Gemini API
        */
-      const botResponse = data.candidates[0].content.parts[0].text;
+      const botResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that request.";
       
       /**
        * Add bot response to chat
