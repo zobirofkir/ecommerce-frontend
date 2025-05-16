@@ -6,6 +6,7 @@ import ProductComponent from "../components/products/ProductComponent";
 import AllProductComponent from "../components/products/AllProductComponent";
 import CategoryComponent from "../components/categories/CategoryComponent";
 import OfferComponent from "../components/offers/OfferComponent";
+import ChatbotComponent from "../components/chatbot/ChatbotComponent";
 
 const HomeScreen = () => {
   return (
@@ -35,6 +36,9 @@ const HomeScreen = () => {
       <section className="bg-yellow-100 py-12">
         <AllProductComponent />
       </section>
+      
+      {/* AI Chatbot Support */}
+      <ChatbotComponent />
     </section>
   );
 };
